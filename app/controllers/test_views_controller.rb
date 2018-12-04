@@ -1,5 +1,7 @@
 class TestViewsController < ApplicationController
     
+    layout 'test_views'
+    
     def index
     end
     

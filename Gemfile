@@ -12,6 +12,8 @@ gem 'rails', '~> 5.1.4'
 gem 'bootstrap-will_paginate', '1.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+#用户登录
+gem 'devise'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
