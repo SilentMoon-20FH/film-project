@@ -6,5 +6,8 @@ class CreateRelationUserUsers < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    add_index :relation_user_users, :follower_id
+    add_index :relation_user_users, :followed_id
+    add_index :relation_user_users, [:follower_id, :followed_id], unique: true
   end
 end
