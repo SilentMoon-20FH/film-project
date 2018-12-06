@@ -23,6 +23,10 @@ class TestViewsController < ApplicationController
     end
     
     def single
+        gameId = params[:gameId]
+        @gameName = Game.find(gameId).name
+        @gameDetail = Game.find(gameId).detail
+        puts @gameDetail
     end
     
 end

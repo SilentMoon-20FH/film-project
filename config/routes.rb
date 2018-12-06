@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   get '/test_views/home'
   
   #模版首页
-  #root 'test_views#home'
+  root 'test_views#home'
   
   #使用deivse生成的登录界面首页(把网页教程中的home改名为login，避免和test_views的home动作重名)
-  root to: "login#index"
+  #root to: "login#index"
   
 end

@@ -1462,6 +1462,7 @@ color:rgb(2, 24, 136) !important;
 .agileits_share ul li a.facebook:hover{
 	background: url(/assets/img-sprite.png) no-repeat -159px -47px;
 }
+
 .agileits_reply{
 	text-align:left;
 }
@@ -1478,6 +1479,16 @@ color:rgb(2, 24, 136) !important;
     padding: 13px;
     border: 1px solid #000;
     margin-bottom: 30px;
+	background:transparent;
+	outline:none;
+}
+.agileits_reply  textarea[readonly="readonly"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000;
+	margin-bottom:15px;
+	height:90px;
+	resize:none;
 	background:transparent;
 	outline:none;
 }
