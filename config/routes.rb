@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/test_views/news'
   get '/test_views/single'
   get '/test_views/home'
+  post '/test_views/writecomment'
   
   #模版首页
   root 'test_views#home'

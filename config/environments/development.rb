@@ -55,4 +55,6 @@ Rails.application.configure do
   #用户登录devise 邮件功能的设置
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   
+  #config.action_controller.allow_forgery_protection = false  
+  
 end

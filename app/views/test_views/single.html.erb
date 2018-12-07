@@ -23,15 +23,20 @@
 					<div class="wthree_blog_left_grid_slider">
 						<img src='<%= asset_path 's1.jpg' %>' alt=" " class="img-responsive" />
 					</div>
-					<h4>Games Zone</h4>
-					<h3>facilisis velit vitae gravida imperdiet</h3>
+					<h4>
+						<% @tagLists.each do |taglist| %>
+							<%= Tag.find(taglist.tag_id).name %>
+							<%= str = '	' %>
+						<% end %>
+					</h4>
+					<h3><%= @game.name %></h3>
 					<ul>
 						<li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><a href="#">Jan Mark</a><i>|</i></li>
 						<li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><a href="#">20</a><i>|</i></li>
 						<li><span class="glyphicon glyphicon-tag" aria-hidden="true"></span><a href="#">5</a><i>|</i></li>
 						<li><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Voluptatibus</li>
 					</ul>
-					<p>Duis venenatis, mi quis malesuada ultricies, nisi nisl posuere sapien,
+					<!--<p>Duis venenatis, mi quis malesuada ultricies, nisi nisl posuere sapien,
 						id egestas lectus urna et massa. Morbi mauris turpis, posuere auctor auctor 
 						ornare, auctor nec lectus. Class aptent taciti sociosqu ad litora torquent 
 						per conubia nostra, per inceptos himenaeos.
@@ -42,7 +47,13 @@
 						elit fringilla nec.</i>Quisque id nunc nec risus molestie aliquam. 
 						Donec ex eros, lobortis et lorem quis, sagittis malesuada lectus. 
 						Suspendisse ornare sed purus a imperdiet. Integer viverra nisi orci, 
-						in volutpat leo ornare vitae.</p>
+						in volutpat leo ornare vitae.</p> -->
+						<% 
+							textlists = @game.detail.split("\n")
+							textlists.each do |text|
+						%>
+								<p>	<%= text %> </p>
+						<%end%>
 				</div>
 				<div class="agileits_share">
 					<ul>
@@ -53,25 +64,62 @@
 					</ul>
 				</div>
 				
-				<div class="agileits_reply">
+				<div class="w3l_categories">
 					<h3>精彩评论</h3>
-					<form action="/single" method="get">
-						<textarea rows="5" readonly="readonly"><%= @gameDetail %></textarea>
-						<textarea rows="5" readonly="readonly"><%= @gameName %></textarea>
-					</form>
+					<% if @commentLists.empty? %>
+						<h3>还没有人评论，分享你的看法吧</h3>
+					<% else %>
+						<ul>
+						<%	@commentLists.each do |c| %>
+							<li>
+								<%= User.find(c.user_id).email %> ||
+								<%= c.created_at.year%>.<%= c.created_at.month%>.<%= c.created_at.day%>.
+								<%= c.created_at.hour%>:<%= c.created_at.min%> ||
+								<%= if c.score==nil then 3 else c.score end %>分
+								<br>
+								<%= c.content %>
+							</li>
+						<% end %>
+						</ul>
+					<% end %>
 				</div>
 				
+				<!-- 登录了才能评论，否则不允许评论-->
+				<% if user_signed_in? %>
 				
-				<div class="agileits_reply">
-					<h3>Leave a reply</h3>
-					<form action="#" method="post">
-						<input type="text" name="Name" placeholder="Name" required="">
-						<input type="email" name="Email" placeholder="Email" required="">
-						<input type="text" name="Subject" placeholder="Subject" required="">
-						<textarea name="Message" placeholder="Type your comment..." required=""></textarea>
-						<input type="submit" value="Submit">
-					</form>
-				</div>
+					<div class="agileits_reply">
+					<h3>留下你的评论吧</h3>
+						<form action="/test_views/writecomment" method="post">
+							
+							<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+							
+							<input name="score" type="radio" value="1" />太糟糕了
+							<input name="score" type="radio" value="2" />不怎么样  
+							<input name="score" type="radio" value="3" />一般般吧  
+							<input name="score" type="radio" value="4" />还不错呢  
+							<input name="score" type="radio" value="5" />非常棒啊  
+							
+							<!-- <input type="text" name="Name" placeholder="Name" required="">
+							<input type="email" name="Email" placeholder="Email" required="">
+							<input type="text" name="Subject" placeholder="Subject" required=""> -->
+							
+							<textarea name="comment" placeholder="说点什么..." required="" rows="15"></textarea>
+							<input type="hidden" name="gameId" value="<%= @game.id %>">
+							<input type="submit" value="Submit">
+						</form>
+					</div>
+					
+				<% else %>
+					
+					<div class="agileits_reply">
+						<h3>您还没有登录，不能评论哟</h3>
+						<h3><a href='/login/index'>去登陆</a></h3>
+						<!-- <img src='<%= asset_path 'c2.jpg' %>' alt=" " class="img-responsive"/> -->
+					</div>
+				
+				<% end %>
+				
+				
 			</div>
 			<div class="col-md-5 wthree_blog_right">
 				<div class="w3ls_search">
