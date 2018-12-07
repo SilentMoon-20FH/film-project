@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181207062340) do
+ActiveRecord::Schema.define(version: 20181207062728) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20181207062340) do
     t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "score"
   end
 
   create_table "lists", force: :cascade do |t|
