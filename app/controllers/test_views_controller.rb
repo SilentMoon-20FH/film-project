@@ -62,6 +62,32 @@ class TestViewsController < ApplicationController
         db.score = score
         db.save
         
+        #更新game评分
+        w1=0.5          #步长因子
+        up_game=Game.find(gameId)
+        m=Comment.where("user_id=?",curUser.id).count
+        curUser_score_sum=0
+        for curUser_comment in Comment.where("user_id=?",curUser.id)
+            curUser_score_sum=curUser_score_sum-curUser_comment.score+db.score
+        end
+        n=Comment.where("game_id=?",gameId).count
+        n=m*n
+        up_game.score=w1*curUser_score_sum/n+up_game.score
+        up_game.save
+        #更新tags评分
+        w2=0.5      #步长因子
+        for up_tag_id in Rgametag.where("game_id=?",gameId)
+            up_tag=Tag.find(up_tag_id.tag_id)
+            n=0
+            for search_game_id in Rgametag.where("tag_id=?",up_tag_id)
+                n=Comment.where("game_id=?",search_game_id.game_id).count
+            end
+            n=m*n
+            up_tag.score=w2*curUser_score_sum/n+up_tag.score
+            up_tag.save
+        end
+        
+        
         #跳转刷新single界面
         redirect_to :action => "single", :gameId => gameId
         
