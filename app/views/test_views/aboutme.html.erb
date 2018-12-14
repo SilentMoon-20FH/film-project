@@ -1,0 +1,68 @@
+
+<div class="container">
+  <h1 class="t_nav">
+    <span>与世界分享你的视界</span>
+    <a href="#" class="n1"><font color="#FFFFFF">我的评论</font></a>
+    <a href="/" class="n2"><font color="#FFFFFF">我的关注</font></a>
+    <a href="/" class="n2"><font color="#FFFFFF">我的粉丝</font></a>
+  </h1>
+  <div class="news_infos">
+    <ul>
+      <!-- 显示评论列表  -->
+      <% comm = Comment.where("user_id=?",params[:userId])  %>
+      <% if comm.empty?  %>
+        <h1>您还没有评论过游戏哦</h1>
+      <% else %>
+        <%  comm.each do |c|  %>
+        <li>
+          comm.content
+          <br/>
+          <a href='/test_views/single?gameId=<%=comm.game_id%>'>Game.find(comm.game_id).name</a>
+        </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="sidebar">
+    <div class="about">
+      <p class="avatar"> <img src='<%= asset_path 'avatar.jpg' %>' alt=""> </p>
+      <p class="abname"><%= User.find(params[:userId]).email %></p>
+      <!--<p class="abposition">Web前端设计师、网页设计</p>-->
+
+      <% user=User.find(params[:userId]) %>
+      <!--显示关注情况-->
+      <%if user.follownum==nil  %>
+      <p class="abname">关注数：0</p>
+      <%else%>
+      <p class="abname">关注数：<%=user.follownum%></p>
+      <%end%>
+      <%if user.fannum==nil  %>      
+      <p class="abname">粉丝数：0</p>
+      <%else%>      
+      p class="abname">粉丝数：<%=user.fannum%></p>
+      <%end%>
+
+    </div>
+    <div class="weixin">
+      <h2 class="hometitle">推荐用户</h2>
+      <ul>
+        <% userlists = User.all  %>
+        <% if userlists.count==1 and userlists[0].id==current_user.id%>
+        <p>您近期活动太少了，很难推荐哦</p>
+        <% else %>
+          <% userlists.each do |u| %>
+          <% if u.id==current_user.id then next end %>
+            <a href='/test_views/aboutother?userId=<%=u.id%>'><%=u.email%></a><br/>
+          <% end  %>
+        <% end  %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!--
+<footer>
+  <p>Design by <a href="http://www.yangqq.com" target="_blank">杨青个人博客</a> <a href="/">蜀ICP备11002373号-1</a></p>
+</footer>
+<a href="#" class="cd-top">Top</a>
+-->

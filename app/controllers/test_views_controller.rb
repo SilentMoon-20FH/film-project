@@ -93,4 +93,67 @@ class TestViewsController < ApplicationController
         
     end
     
+    #个人主页
+    def aboutme
+    end
+    
+    #别人的主页
+    def aboutother
+    end
+    
+    #关注按钮的响应
+    def followfunc
+        #写入关系表
+        meUserId= params[:meUserId]
+        otherUserId=params[:otherUserId]
+        followship=Followship.new
+        followship.follower_id=meUserId
+        followship.followed_id=otherUserId
+        followship.save
+        
+        #修改关注数
+        meUser=User.find(meUserId)
+        if meUser.follownum==nil
+            meUser.follownum=1
+            meUser.save
+        else
+            meUser.follownum=meUser.follownum+1
+            meUser.save
+        end
+        
+        #修改对方被关注数
+        otherUser=User.find(otherUserId)
+        if otherUser.fannum==nil
+            otherUser.fannum=1
+            otherUser.save
+        else
+            otherUser.fannum=otherUser.fannum+1
+            otherUser.save
+        end
+        
+        redirect_to :action => "aboutother", :userId => otherUserId
+
+    end
+    
+    #取消关注
+    def unfollowfunc
+        meUserId= params[:meUserId]
+        otherUserId=params[:otherUserId]
+        followship=Followship.where("follower_id=? and followed_id=?",meUserId,otherUserId)
+        followship[0].destroy
+        followship[0].save
+        
+        #修改关注数
+        meUser=User.find(meUserId)
+        meUser.follownum=meUser.follownum-1
+        meUser.save
+        
+        #修改对方被关注数
+        otherUser=User.find(otherUserId)
+        otherUser.fannum=otherUser.fannum-1
+        otherUser.save
+        
+        redirect_to :action => "aboutother", :userId => otherUserId        
+    end
+    
 end

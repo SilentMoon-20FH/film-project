@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   get '/test_views/news'
   get '/test_views/single'
   get '/test_views/home'
+  get '/test_views/aboutme'
+  get '/test_views/aboutother'
   post '/test_views/writecomment'
+  post '/test_views/followfunc'
+  post '/test_views/unfollowfunc'
   
   #模版首页
   root 'test_views#home'
