@@ -2,22 +2,25 @@
 <div class="container">
   <h1 class="t_nav">
     <span>与世界分享你的视界</span>
-    <a href="#" class="n1"><font color="#FFFFFF">我的评论</font></a>
+    <a href="/test_views/aboutme?userId=<%=current_user.id%>" class="n2"><font color="#FFFFFF">我的评论</font></a>
     <a href="/test_views/aboutmefollowpage?userId=<%=current_user.id%>" class="n2"><font color="#FFFFFF">我的关注</font></a>
-    <a href="/test_views/aboutmefanpage?userId=<%=current_user.id%>" class="n2"><font color="#FFFFFF">我的粉丝</font></a>
+    <a href="#" class="n1"><font color="#FFFFFF">我的粉丝</font></a>
   </h1>
   <div class="news_infos">
     <ul>
-      <!-- 显示评论列表  -->
-      <% comm = Comment.where("user_id=?",params[:userId])  %>
-      <% if comm.empty?  %>
-        <h1>您还没有评论过游戏哦</h1>
+      <!-- 显示粉丝列表  -->
+      <% fs=Followship.where("followed_id=?",current_user.id)  %>
+      <% if fs.empty?  %>
+        <h1>还没有人关注您哦</h1>
       <% else %>
-        <%  comm.each do |c|  %>
+      <!--列出粉丝名单和其主页链接-->
+        <%  fs.each do |f|  %>
         <li>
-          comm.content
+          <% u=User.find(f.follower_id)  %>
+          <a href='/test_views/aboutother?userId=<%=u.id%>'>
+            <%=u.email%>
+          </a>
           <br/>
-          <a href='/test_views/single?gameId=<%=comm.game_id%>'>Game.find(comm.game_id).name</a>
         </li>
         <% end %>
       <% end %>

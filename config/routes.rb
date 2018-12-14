@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/test_views/single'
   get '/test_views/home'
   get '/test_views/aboutme'
+  get '/test_views/aboutmefollowpage'
+  get '/test_views/aboutmefanpage'
   get '/test_views/aboutother'
   post '/test_views/writecomment'
   post '/test_views/followfunc'
