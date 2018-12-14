@@ -9,7 +9,7 @@
   <div class="news_infos">
     <ul>
       <!-- 显示评论列表  -->
-      <% comm = Comment.where("user_id=?",params[:userId])  %>
+      <% comm = Comment.where("user_id=?",current_user.id)  %>
       <% if comm.empty?  %>
         <h1>您还没有评论过游戏哦</h1>
       <% else %>

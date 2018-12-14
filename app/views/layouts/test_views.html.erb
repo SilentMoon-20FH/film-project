@@ -42,7 +42,7 @@
 						<li class="hover-effect"><a href='/test_views/news'>游戏列表</a></li>
 						
 						<% if current_user %>
-						<li class="hover-effect"><a href='/test_views/aboutme?userId=<%= current_user.id %>'>我的主页</a></li>
+						<li class="hover-effect"><a href='/test_views/aboutme'>我的主页</a></li>
 					    <li class="hover-effect">
 					    	<%= link_to('登出', destroy_user_session_path, :method => :delete) %>
 					    </li>
