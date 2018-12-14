@@ -43,6 +43,14 @@
       <%else%>      
       p class="abname">粉丝数：<%=current_user.fannum%></p>
       <%end%>
+      
+      <!--更新头像-->
+      <form action="/test_views/uploadpic" method="post">
+        
+        <input type='file'>
+        <input type="submit" value="更新头像">
+        
+      </form>
 
     </div>
     <div class="weixin">

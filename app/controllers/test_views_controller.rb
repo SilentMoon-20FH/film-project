@@ -156,4 +156,19 @@ class TestViewsController < ApplicationController
         redirect_to :action => "aboutother", :userId => otherUserId        
     end
     
+    #上传头像
+    def uploadpic
+        
+        current_user.picture=params[:browsefile]
+        current_user.save
+        
+        #send_data current_user.image, :type =>'image / png', :disposition =>'inline'
+        redirect_to :action => "aboutme"
+    end
+    
+    def showpic
+        f=File.open(current_user.picture,"rb")
+        send_data(f.read, :type =>"image/jpeg", :disposition =>"inline")
+    end
+    
 end

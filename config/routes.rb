@@ -15,9 +15,12 @@ Rails.application.routes.draw do
   get '/test_views/aboutmefollowpage'
   get '/test_views/aboutmefanpage'
   get '/test_views/aboutother'
+  get '/test_views/showpic'
+  post '/test_views/showpic'
   post '/test_views/writecomment'
   post '/test_views/followfunc'
   post '/test_views/unfollowfunc'
+  post '/test_views/uploadpic'
   
   #模版首页
   root 'test_views#home'
