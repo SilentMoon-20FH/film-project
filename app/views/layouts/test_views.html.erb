@@ -2,7 +2,7 @@
 <html lang="en">
 <html>
   <head>
-    <title>FilmProject</title>
+    <title>游戏点评</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -47,6 +47,7 @@
 					    	<%= link_to('登出', destroy_user_session_path, :method => :delete) %>
 					    </li>
 					    <% else %>
+					    <li class="hover-effect">
 					    	<%= link_to('登录', new_session_path(:user)) %>
 					    </li>
 					    <% end %>

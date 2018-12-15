@@ -1,5 +1,27 @@
-<h2>Log in</h2>
+<div id="container">
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+				<div class="login">欢迎回来</div>
+				<div class="username-text">邮箱:</div>
+				<div class="password-text">密码:</div>
+				<div class="username-field">
+				  <%= f.email_field :email, autocomplete: "email" %>
+				</div>
+				<div class="password-field">
+					<%= f.password_field :password, autocomplete: "current-password" %>
+				</div>
+			<div class="actions" style="margin-left:415px;">
+			  <%= f.submit "登录" %>
+			</div>
+    <% end %>
+</div>
+<%= render "devise/shared/links" %>
+<div id="footer">
+		  与世界分享你的视界 
+</div>
 
+
+<!--
+<h2>登录</h2>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
@@ -19,8 +41,8 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "登录" %>
   </div>
 <% end %>
-
 <%= render "devise/shared/links" %>
+-->
