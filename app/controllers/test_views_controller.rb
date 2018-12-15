@@ -171,4 +171,13 @@ class TestViewsController < ApplicationController
         send_data(f.read, :type =>"image/jpeg", :disposition =>"inline")
     end
     
+    #删除评论
+    def deletecomment
+        commId=params[:id]
+        comm=Comment.find(commId)
+        comm.destroy
+        comm.save
+        redirect_to :action => "aboutme"
+    end
+    
 end

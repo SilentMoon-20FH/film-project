@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/test_views/aboutmefanpage'
   get '/test_views/aboutother'
   get '/test_views/showpic'
+  get '/test_views/deletecomment'
   post '/test_views/showpic'
   post '/test_views/writecomment'
   post '/test_views/followfunc'

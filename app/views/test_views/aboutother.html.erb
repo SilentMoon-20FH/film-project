@@ -52,7 +52,7 @@
         <!--寻找是否有这对关注信息-->
         <% fs=Followship.where("follower_id=? and followed_id=?",current_user.id,params[:userId]) %>
         <% if fs.empty? %>
-          <form action="/test_views/followfunc" method="post" class="abname">
+          <form action="/test_views/followfunc" method="post">
            <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
           <input type='hidden' name='meUserId' value='<%=current_user.id%>'/>
           <input type='hidden' name='otherUserId' value='<%=params[:userId]%>'/>

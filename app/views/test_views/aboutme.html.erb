@@ -9,15 +9,21 @@
   <div class="news_infos">
     <ul>
       <!-- 显示评论列表  -->
-      <% comm = Comment.where("user_id=?",current_user.id)  %>
+      <% comm = Comment.where("user_id=?",current_user.id).order('created_at desc')  %>
       <% if comm.empty?  %>
         <h1>您还没有评论过游戏哦</h1>
       <% else %>
         <%  comm.each do |c|  %>
         <li>
-          comm.content
+          评论内容：<%=c.content%>
           <br/>
-          <a href='/test_views/single?gameId=<%=comm.game_id%>'>Game.find(comm.game_id).name</a>
+          评分：<%=c.score%>分
+          <br/>
+          评论日期：<%= c.created_at.year%>.<%= c.created_at.month%>.<%= c.created_at.day%>.<%= c.created_at.hour%>:<%= c.created_at.min%>
+          <br/>
+          游戏名：<a href='/test_views/single?gameId=<%=c.game_id%>'><%=Game.find(c.game_id).name%></a>
+          <br/>
+          <a href='/test_views/deletecomment?id=<%=c.id%>'><font color="#FF0000">删除评论</font></a>
         </li>
         <% end %>
       <% end %>
