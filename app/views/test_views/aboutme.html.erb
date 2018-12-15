@@ -23,7 +23,7 @@
           <br/>
           游戏名：<a href='/test_views/single?gameId=<%=c.game_id%>'><%=Game.find(c.game_id).name%></a>
           <br/>
-          <a href='/test_views/deletecomment?id=<%=c.id%>'><font color="#FF0000">删除评论</font></a>
+          <a href='/test_views/deletecomment?id=<%=c.id%>' onclick="return confirmd()"><font color="#FF0000">删除评论</font></a>
         </li>
         <% end %>
       <% end %>
