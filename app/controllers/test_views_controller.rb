@@ -167,8 +167,8 @@ class TestViewsController < ApplicationController
     end
     
     def showpic
-        f=File.open(current_user.picture,"rb")
-        send_data(f.read, :type =>"image/jpeg", :disposition =>"inline")
+        f=File.open(current_user.picture,"wb+")
+        send_data(f.read, :type =>'image/jpg', :disposition =>"inline")
     end
     
     #删除评论

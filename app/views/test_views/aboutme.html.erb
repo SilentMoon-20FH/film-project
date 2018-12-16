@@ -33,7 +33,7 @@
     <div class="about">
       <p class="avatar"> 
         <img src='<%= asset_path 'avatar.jpg' %>' alt="">
-        <!--<img src="<%= url_for(:action => "showpic") %>" alt=""/>-->
+        <img src="<%= url_for(:action => "showpic") %>" alt=""/>
         <!--<%= image_tag url_for(:action => "showpic")%>-->
       </p>
       <p class="abname"><%= current_user.email %></p>
@@ -52,17 +52,14 @@
       <%end%>
 
 
-      <!--更新头像-->
-      <!--
       <form action="/test_views/uploadpic" method="post" enctype="multipart/form-data">
-        <!--<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>-->
+        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
         <!--<input type='file' name='userPic' accept="image/*">-->
-        <!--<input type=file name=browsefile style="visibility:hidden" onchange=filepath.value=this.value accept="image/*">
+        <input type=file name=browsefile style="visibility:hidden" onchange=filepath.value=this.value accept="image/*">
         <input type=textfield name=filepath >
         <input type=button name=filebutton value=选择头像 onclick="browsefile.click()">
         <input type='submit' value="确定">
       </form>
-      -->
 
 
     </div>

@@ -15,9 +15,13 @@
       <% else %>
         <%  comm.each do |c|  %>
         <li>
-          comm.content
+          评论内容：<%=c.content%>
           <br/>
-          <a href='/test_views/single?gameId=<%=comm.game_id%>'>Game.find(comm.game_id).name</a>
+          评分：<%=c.score%>分
+          <br/>
+          评论日期：<%= c.created_at.year%>.<%= c.created_at.month%>.<%= c.created_at.day%>.<%= c.created_at.hour%>:<%= c.created_at.min%>
+          <br/>
+          游戏名：<a href='/test_views/single?gameId=<%=c.game_id%>'><%=Game.find(c.game_id).name%></a>
         </li>
         <% end %>
       <% end %>
