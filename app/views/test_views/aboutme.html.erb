@@ -13,6 +13,7 @@
       <% if comm.empty?  %>
         <h1>您还没有评论过游戏哦</h1>
       <% else %>
+        <% comm = comm.page(params[:page]).per(5)  %>
         <%  comm.each do |c|  %>
         <li>
           评论内容：<%=c.content%>
@@ -26,15 +27,14 @@
           <a href='/test_views/deletecomment?id=<%=c.id%>' onclick="return confirmd()"><font color="#FF0000">删除评论</font></a>
         </li>
         <% end %>
+        <%= paginate comm %>
       <% end %>
     </ul>
   </div>
   <div class="sidebar">
     <div class="about">
-      <p class="avatar"> 
+      <p class="avatar">
         <img src='<%= asset_path 'avatar.jpg' %>' alt="">
-        <img src="<%= url_for(:action => "showpic") %>" alt=""/>
-        <!--<%= image_tag url_for(:action => "showpic")%>-->
       </p>
       <p class="abname"><%= current_user.email %></p>
       <!--<p class="abposition">Web前端设计师、网页设计</p>-->
@@ -50,17 +50,6 @@
       <%else%>      
       <p class="abname">粉丝数：<%=current_user.fannum%></p>
       <%end%>
-
-
-      <form action="/test_views/uploadpic" method="post" enctype="multipart/form-data">
-        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
-        <!--<input type='file' name='userPic' accept="image/*">-->
-        <input type=file name=browsefile style="visibility:hidden" onchange=filepath.value=this.value accept="image/*">
-        <input type=textfield name=filepath >
-        <input type=button name=filebutton value=选择头像 onclick="browsefile.click()">
-        <input type='submit' value="确定">
-      </form>
-
 
     </div>
     <div class="weixin">

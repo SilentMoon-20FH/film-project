@@ -70,7 +70,7 @@
 						<h3>还没有人评论，分享你的看法吧</h3>
 					<% else %>
 						<ul>
-						<%	@commentLists.each do |c| %>
+							<%	@commentLists.each do |c| %>
 							<li>
 								<%= User.find(c.user_id).email %> ||
 								<%= c.created_at.year%>.<%= c.created_at.month%>.<%= c.created_at.day%>.
@@ -79,8 +79,9 @@
 								<br>
 								<%= c.content %>
 							</li>
-						<% end %>
+							<% end %>
 						</ul>
+						<%= paginate @commentLists %>
 					<% end %>
 				</div>
 				

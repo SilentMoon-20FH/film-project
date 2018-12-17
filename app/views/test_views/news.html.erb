@@ -4,12 +4,14 @@
 	<!--修改了下面的第一个-->
 	
 	<!-- 循环所有游戏 -->
-	<% if Game.all.empty? %>
+	<% gamelists = Game.all %>
+	<% if gamelists.empty? %>
 	<h1>现在还没有游戏哦</h1>
 	
 	<% else %>
-		<% Game.all.each do |game| %>
-	
+		<% gamelists=gamelists.page(params[:page]).per(5) %>
+		
+		<% gamelists.each do |game| %>
 		<div class="blog1-w3ls">
 			<div class="col-md-4 blog-image-w3l">
 				<a href='/test_views/single?gameId=<%=game.id%>'><img src='<%= asset_path 'ng1.jpg' %>' alt=" " /></a>
@@ -29,8 +31,9 @@
 			</div>
 			<div class="clearfix"></div>
 		</div>
-	
 		<% end %>
+		<%= paginate gamelists %>
+		
 	<% end %>
 	
 	<!--

@@ -20,7 +20,12 @@ class TestViewsController < ApplicationController
         render :layout => 'home'
     end
     
+    def new
+         @user = User.new
+    end
+    
     def news
+       
     end
     
     def single
@@ -34,9 +39,7 @@ class TestViewsController < ApplicationController
         
         #评论列表，按评论时间降序排列（最新的在最前）
         @commentLists = Comment.where("game_id=?",gameId).order('created_at desc')
-        
-        
-        puts @gameDetail
+        @commentLists=@commentLists.page(params[:page]).per(5)
     end
     
     def writecomment
@@ -95,6 +98,7 @@ class TestViewsController < ApplicationController
     
     #个人主页
     def aboutme
+        @user = User.find(current_user.id)  
     end
     
     #别人的主页
@@ -117,8 +121,17 @@ class TestViewsController < ApplicationController
             meUser.follownum=1
             meUser.save
         else
-            meUser.follownum=meUser.follownum+1
+            puts '=============================='
+            puts 'meUser.follownum 1: '+meUser.follownum.to_s
+            puts '=============================='
+            meUser.follownum += 1
+            puts '=============================='
+            puts 'meUser.follownum 2: '+meUser.follownum.to_s
+            puts '=============================='
             meUser.save
+            puts '=============================='
+            puts 'meUser.follownum 3: '+meUser.follownum.to_s
+            puts '=============================='
         end
         
         #修改对方被关注数
@@ -127,7 +140,7 @@ class TestViewsController < ApplicationController
             otherUser.fannum=1
             otherUser.save
         else
-            otherUser.fannum=otherUser.fannum+1
+            otherUser.fannum += 1
             otherUser.save
         end
         
@@ -145,31 +158,33 @@ class TestViewsController < ApplicationController
         
         #修改关注数
         meUser=User.find(meUserId)
-        meUser.follownum=meUser.follownum-1
+        meUser.follownum -= 1
         meUser.save
         
         #修改对方被关注数
         otherUser=User.find(otherUserId)
-        otherUser.fannum=otherUser.fannum-1
+        otherUser.fannum -= 1
         otherUser.save
         
         redirect_to :action => "aboutother", :userId => otherUserId        
     end
     
-    #上传头像
-    def uploadpic
-        
-        current_user.picture=params[:browsefile]
-        current_user.save
-        
+    #上传头像(放弃不用)
+    #def uploadpic
+    #    current_user.picture=params[:browsefile]
+    #    current_user.save
         #send_data current_user.image, :type =>'image / png', :disposition =>'inline'
-        redirect_to :action => "aboutme"
-    end
+    #    redirect_to :action => "aboutme"
+    #end
     
-    def showpic
-        f=File.open(current_user.picture,"wb+")
-        send_data(f.read, :type =>'image/jpg', :disposition =>"inline")
-    end
+    #显示头像（放弃不用）
+    #def showpic
+    #    #f=File.open(current_user.picture,"wb+")
+    #    File.open(picture_new_path, 'wb') do |file|
+	#        file.write picture
+	#        send_data(picture, :type =>'image/jpg', :disposition =>"inline")
+	#    end
+    #end
     
     #删除评论
     def deletecomment
@@ -179,5 +194,27 @@ class TestViewsController < ApplicationController
         comm.save
         redirect_to :action => "aboutme"
     end
+    
+    #（放弃不用）
+    #上传头像
+    def image_upload_view  
+        @user = User.new  
+    end  
+    #（放弃不用）
+    #上传头像
+    def uploadpicture
+        @user = User.find(current_user.id)
+        @user.image = params[:user][:browsefile]  
+        puts "==================================="
+        puts @user.image
+        puts "==================================="
+        @user.save  
+        redirect_to(:action => 'aboutme')  
+    end  
+    #（放弃不用）
+    #显示头像
+    def image_show_view  
+        @user = User.find(current_user.id)  
+    end 
     
 end

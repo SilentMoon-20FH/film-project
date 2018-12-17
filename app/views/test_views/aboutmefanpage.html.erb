@@ -14,6 +14,7 @@
         <h1>还没有人关注您哦</h1>
       <% else %>
       <!--列出粉丝名单和其主页链接-->
+        <% fs=fs.page(params[:page]).per(5)  %>
         <%  fs.each do |f|  %>
         <li>
           <% u=User.find(f.follower_id)  %>
@@ -23,6 +24,7 @@
           <br/>
         </li>
         <% end %>
+        <%= paginate fs %>
       <% end %>
     </ul>
   </div>
