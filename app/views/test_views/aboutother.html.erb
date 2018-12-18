@@ -50,6 +50,9 @@
       <p class="abname">粉丝数：<%=user.fannum%></p>
       <%end%>
       
+      <!--登录了，才显示“关注”/“取消关注”按钮-->
+      <% if user_signed_in? %>
+      
       <!--关注按钮-->
       <!--未关注时显示‘关注’ -->
       <!--关注时显示‘取消关注’ -->
@@ -70,6 +73,8 @@
           <input type="submit" value="取消关注"/>
           </form>
         <% end %>
+      
+      <% end  %>
       
     </div>
   </div>

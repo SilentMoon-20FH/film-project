@@ -74,7 +74,7 @@
 						<ul>
 							<%	@commentLists.each do |c| %>
 							<li>
-								<%= User.find(c.user_id).email %> ||
+								<a href='/test_views/aboutother?userId=<%=c.user_id%>'><%= User.find(c.user_id).email %></a> ||
 								<%= c.created_at.year%>.<%= c.created_at.month%>.<%= c.created_at.day%>.
 								<%= c.created_at.hour%>:<%= c.created_at.min%> ||
 								<%= if c.score==nil then 3 else c.score end %>分
