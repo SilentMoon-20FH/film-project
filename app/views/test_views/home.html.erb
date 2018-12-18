@@ -25,6 +25,12 @@
 						
 						<% if current_user %>
 						<li class="hover-effect"><a href='/test_views/aboutme'>我的主页</a></li>
+							<!--如果是管理员的话，显示后台管理链接-->
+							<% if current_user.isadmin>0 %>
+								<li class="hover-effect">
+						    		<li class="hover-effect"><a href='/admin'>后台管理</a></li>
+						    	</li>
+					    	<% end %>
 					    <li class="hover-effect">
 					    	<%= link_to('登出', destroy_user_session_path, :method => :delete) %>
 					    </li>
