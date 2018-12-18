@@ -124,8 +124,9 @@
 			</div>
 			<div class="col-md-5 wthree_blog_right">
 				<div class="w3ls_search">
-					<form action="#" method="post">
-						<input type="text" name="Search" placeholder="Search on our blog" required="">
+					<form action="/test_views/find_in_single" method="post">
+						<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+						<input type="text" name="gamename" placeholder="你想找的游戏叫什么名字？" required="">
 						<input type="submit" value=" ">
 					</form>
 				</div>

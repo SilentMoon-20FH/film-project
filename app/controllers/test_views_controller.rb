@@ -25,7 +25,6 @@ class TestViewsController < ApplicationController
     end
     
     def news
-       
     end
     
     def single
@@ -216,5 +215,25 @@ class TestViewsController < ApplicationController
     def image_show_view  
         @user = User.find(current_user.id)  
     end 
+    
+    $findlists = nil
+    #按名字搜索游戏（模糊匹配）
+    def find_in_single
+        gamename = params[:gamename]
+        $findlists = Game.where("name like ?","%"+gamename+"%")
+        puts '=============================='
+        puts gamename
+        puts $findlists.empty?
+        puts '=============================='
+        redirect_to(:action => 'newsfind') 
+    end
+    
+    def newsfind
+        @findlists = $findlists
+        puts '#################################'
+        puts $findlists.empty?
+        puts @findlists.empty?
+        puts '#################################'
+    end
     
 end
