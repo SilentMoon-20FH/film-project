@@ -12,16 +12,34 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href='/test_views/home'><h1>Games <img src='<%= asset_path 'c1.png' %>' alt=" " /> Zone</h1></a>
+					<!--<a href='/test_views/home'><h1>Games <img src='<%= asset_path 'c1.png' %>' alt=" " /> Zone</h1></a>-->
 				</div>
 
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="hover-effect"><a href='/test_views/home'>Home</a></li>
+						<li class="hover-effect"><a href='/test_views/home'>首页</a></li>
 						<li class="hover-effect"><a href='/test_views/about'>About</a></li>
-						<li class="hover-effect"><a href='/test_views/games'>Games</a></li>
-						<li class="hover-effect"><a href='/test_views/news'>News</a></li>
-						<li class="hover-effect"><a href='/test_views/contact'>Contact</a></li>
+						<!--<li class="hover-effect active"><a href='/test_views/games'>Games</a></li>-->
+						<li class="hover-effect"><a href='/test_views/news'>游戏列表</a></li>
+						<!--<li class="hover-effect"><a href='/test_views/aboutme'>我的主页</a></li>-->
+						
+						<% if current_user %>
+						<li class="hover-effect"><a href='/test_views/aboutme'>我的主页</a></li>
+							<!--如果是管理员的话，显示后台管理链接-->
+							<% if current_user.isadmin>0 %>
+								<li class="hover-effect">
+						    		<li class="hover-effect"><a href='/admin'>后台管理</a></li>
+						    	</li>
+					    	<% end %>
+					    <li class="hover-effect">
+					    	<%= link_to('登出', destroy_user_session_path, :method => :delete) %>
+					    </li>
+					    <% else %>
+					    <li class="hover-effect">
+					    	<%= link_to('登录', new_session_path(:user)) %>
+					    </li>
+					    <% end %>
+						
 					</ul>
 				</div>
 
@@ -199,6 +217,7 @@
 			<div class="mask">
 				<a href='/test_views/single'><h4>Click here</h4></a>
 				<p>To learn more about this</p>
+				
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
@@ -234,6 +253,7 @@
 </div>
 <!-- //new games-->
 
+<!--
 <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div>
 
 <div class="services-bottom-w3-agileits">
@@ -266,8 +286,9 @@
 						</ul>
 					</div>
 				</section>
+				-->
 						<!-- flexSlider -->
-							
+				<!--			
 							<script defer src="js/jquery.flexslider.js"></script>
 							<script type="text/javascript">
 							$(window).load(function(){
@@ -279,7 +300,10 @@
 							  });
 							});
 						  </script>
+				<!--
 						<!-- //flexSlider -->
+<!--
 			</div>
 		</div>
 	</div>
+-->

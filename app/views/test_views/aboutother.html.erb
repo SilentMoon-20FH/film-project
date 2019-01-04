@@ -1,0 +1,88 @@
+
+<div class="container">
+  <h1 class="t_nav">
+    <span>与世界分享你的视界</span>
+    <a href="#" class="n1"><font color="#FFFFFF">TA的评论</font></a>
+    <!--<a href="/" class="n2"><font color="#FFFFFF">我的关注</font></a>-->
+    <!--<a href="/" class="n2"><font color="#FFFFFF">我的粉丝</font></a>-->
+  </h1>
+  <div class="news_infos">
+    <ul>
+      <!-- 显示评论列表  -->
+      <% comm = Comment.where("user_id=?",params[:userId])  %>
+      <% if comm.empty?  %>
+        <h1>TA还没有评论过游戏哦</h1>
+      <% else %>
+        <%  comm.each do |c|  %>
+        <li>
+          评论内容：<%=c.content%>
+          <br/>
+          评分：<%=c.score%>分
+          <br/>
+          评论日期：<%= c.created_at.year%>.<%= c.created_at.month%>.<%= c.created_at.day%>.<%= c.created_at.hour%>:<%= c.created_at.min%>
+          <br/>
+          游戏名：<a href='/test_views/single?gameId=<%=c.game_id%>'><%=Game.find(c.game_id).name%></a>
+        </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="sidebar">
+    <div class="about">
+      <!--显示头像-->
+      <p class="avatar"> <img src='<%= asset_path 'avatar.jpg' %>' alt=""> </p>
+      
+      <!--获取用户对象 -->
+      <% user=User.find(params[:userId]) %>
+      <!--显示用户邮箱-->
+      <p class="abname"><%= User.find(params[:userId]).email %></p>
+      <!--<p class="abposition">Web前端设计师、网页设计</p>-->
+      
+      <!--显示关注情况-->
+      <%if user.follownum==nil  %>
+      <p class="abname">关注数：0</p>
+      <%else%>
+      <p class="abname">关注数：<%=user.follownum%></p>
+      <%end%>
+      <%if user.fannum==nil  %>      
+      <p class="abname">粉丝数：0</p>
+      <%else%>
+      <p class="abname">粉丝数：<%=user.fannum%></p>
+      <%end%>
+      
+      <!--登录了，才显示“关注”/“取消关注”按钮-->
+      <% if user_signed_in? %>
+      
+      <!--关注按钮-->
+      <!--未关注时显示‘关注’ -->
+      <!--关注时显示‘取消关注’ -->
+        <!--寻找是否有这对关注信息-->
+        <% fs=Followship.where("follower_id=? and followed_id=?",current_user.id,params[:userId]) %>
+        <% if fs.empty? %>
+          <form action="/test_views/followfunc" method="post">
+           <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+          <input type='hidden' name='meUserId' value='<%=current_user.id%>'/>
+          <input type='hidden' name='otherUserId' value='<%=params[:userId]%>'/>
+          <input type="submit" value="关注"/>
+          </form>
+        <% else %>
+          <form action="/test_views/unfollowfunc" method="post">
+          <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+          <input type='hidden' name='meUserId' value='<%=current_user.id%>'/>
+          <input type='hidden' name='otherUserId' value='<%=params[:userId]%>'/>
+          <input type="submit" value="取消关注"/>
+          </form>
+        <% end %>
+      
+      <% end  %>
+      
+    </div>
+  </div>
+</div>
+
+<!--
+<footer>
+  <p>Design by <a href="http://www.yangqq.com" target="_blank">杨青个人博客</a> <a href="/">蜀ICP备11002373号-1</a></p>
+</footer>
+<a href="#" class="cd-top">Top</a>
+-->
