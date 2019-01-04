@@ -2,13 +2,24 @@
 <html lang="en">
 <html>
   <head>
-    <title>FilmProject</title>
+    <title>游戏点评</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="" />
     <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,100,100italic,300,300italic,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+	<script type="text/javascript"> 
+		function confirmd() {  
+            var msg = "确定删除这条评论吗？";  
+            if (confirm(msg)==true){  
+                return true;  
+            }else{  
+                return false;  
+            }  
+        }  
+	</script>
 
     
     <%= csrf_meta_tags %>
@@ -23,7 +34,7 @@
 		<!-- Navbar -->
 		<nav class="navbar navbar-default">
 			<div class="container">
-
+				
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 						<span class="sr-only">Toggle navigation</span>
@@ -31,16 +42,35 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a  href='/test_views/home'><h1>Games <img src='<%= asset_path 'c1.png' %>' alt=" " /> Zone</h1></a>
+				<!--<a  href='/test_views/home'><h1>Games <img src='<%= asset_path 'c1.png' %>' alt=" " /> Zone</h1></a>-->
 				</div>
 
 				<div id="navbar" class="navbar-collapse collapse">
+					
 					<ul class="nav navbar-nav navbar-right">
-						<li class="hover-effect"><a href='/test_views/home'>Home</a></li>
+						
+						<li class="hover-effect"><a href='/test_views/home'>首页</a></li>
 						<li class="hover-effect"><a href='/test_views/about'>About</a></li>
-						<li class="hover-effect active"><a href='/test_views/games'>Games</a></li>
-						<li class="hover-effect"><a href='/test_views/news'>News</a></li>
-						<li class="hover-effect"><a href='/test_views/contact'>Contact</a></li>
+						<!--<li class="hover-effect active"><a href='/test_views/games'>Games</a></li>-->
+						<li class="hover-effect"><a href='/test_views/news'>游戏列表</a></li>
+						
+						<% if current_user %>
+						<li class="hover-effect"><a href='/test_views/aboutme'>我的主页</a></li>
+							<!--如果是管理员的话，显示后台管理链接-->
+							<% if current_user.isadmin>0 %>
+								<li class="hover-effect">
+						    		<li class="hover-effect"><a href='/admin'>后台管理</a></li>
+						    	</li>
+					    	<% end %>
+					    <li class="hover-effect">
+					    	<%= link_to('登出', destroy_user_session_path, :method => :delete) %>
+					    </li>
+					    <% else %>
+					    <li class="hover-effect">
+					    	<%= link_to('登录', new_session_path(:user)) %>
+					    </li>
+					    <% end %>
+					
 					</ul>
 				</div>
 
@@ -54,8 +84,9 @@
     
     
   <!-- footer -->
-  <div class="footer">
-	<div class="container">
+  <div class="footer" style=" text-align:center;">
+	<div class="container" style=" text-align:center;">
+		<!--
 		<div class="col-md-3 footer-left-w3">
 			<h4>Contact</h4>
 			<ul>
@@ -103,14 +134,21 @@
 			</div>
 			<div class="clearfix"></div>
 		</div>
-		<div class="col-md-4 footer-right-w3">
-			<a href='/test_views/home'><h4>Games <img src='<%= asset_path 'f1.png' %>' alt=" " /> Zone</h4></a>
-			<p>Donec lobortis diam eu auctor porta. Phasellus in elementum tortor, sit amet imperdiet urna pellentesque non risus porta.</p>
-			<p class="agileinfo">Suspendisse convallis malesuada libero, non rutrum arcu pellentesque lacinia.</p>
+		-->
+		<!--<div class="col-md-4 footer-right-w3" style=" text-align:center;">-->
+			<div style=" text-align:center;">
+			<!--<a href='/test_views/home'>-->
+				<!--<h4>小组成员</h4>-->
+			<!--<img src='<%= asset_path 'f1.png' %>' alt=" " /> Zone</h4></a> -->
+			<!--<p>Donec lobortis diam eu auctor porta. Phasellus in elementum tortor, sit amet imperdiet urna pellentesque non risus porta.</p>-->
+			<!--<p class="agileinfo">Suspendisse convallis malesuada libero, non rutrum arcu pellentesque lacinia.</p>-->
+			<p>章凯 张天瑞 曲慕子 习耀辉 余茜茜</p>
+		
 		</div>
 		<div class="clearfix"></div>
 		<div class="copyright">
-			<p>Copyright &copy; 2017.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+			<!--<p>Copyright &copy; 2017.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>-->
+			<p>中国科学院大学-高级软件工程-18-19秋季</p>
 		</div>
 	</div>
 </div>
