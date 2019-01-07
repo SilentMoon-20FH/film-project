@@ -1,0 +1,79 @@
+<div class="events-section2-agileinfo">
+<div class="container">
+	
+	<% gamelists = @findlists %>
+	<% puts '+++++++++++++++++++++++++' %>
+	<% puts gamelists.empty? %>
+	<% puts '+++++++++++++++++++++++++' %>
+	<% if gamelists.empty? %>
+		<h1>没有找到相关游戏哦</h1>
+	<% else %>
+		
+		<% gamelists.each do |rgame| %>
+		<% game=Game.find(rgame.game_id)%>
+		<div class="blog1-w3ls">
+			<div class="col-md-4 blog-image-w3l">
+				<a href='/test_views/single?gameId=<%=game.id%>'><img src='<%= asset_path 'ng1.jpg' %>' alt=" " /></a>
+			</div>
+			<div class="col-md-8 blog-text-w3ls">
+				<a href='/test_views/single?gameId=<%=game.id%>'><h4><%=game.name%></h4></a>
+				<!--<div class="item_info">
+						<ul>
+							<li><a href="#"><i class="glyphicon glyphicon-user"></i>Admin</a></li>
+							<li><i class="glyphicon glyphicon-calendar"></i>14.May.2017</li>
+							<li><a href="#"><i class="glyphicon glyphicon-comment"></i>20 Comments</a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-heart"></i>300 Likes</a></li>
+						</ul>				
+				 </div>-->
+				 <p height='10px' overflow='hidden'><%=game.detail%></p>
+				 <!--<a href='/test_views/single' class="blog-read" >Read More</a>-->
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<% end %>
+		
+	<% end %>
+	
+	<!--
+	<div class="blog2-w3ls">
+		<div class="col-md-4 blog-image-w3l">
+			<a href='/test_views/single'><img src='<%= asset_path 'ng2.jpg' %>' alt=" " /></a>
+		</div>
+		<div class="col-md-8 blog-text-w3ls">
+			<a href='/test_views/single'><h4>In finibus vel metus</h4></a>
+			<div class="item_info">
+					<ul>
+						<li><a href="#"><i class="glyphicon glyphicon-user"></i>Admin</a></li>
+						<li><i class="glyphicon glyphicon-calendar"></i>17.Aug.2017</li>
+						<li><a href="#"><i class="glyphicon glyphicon-comment"></i>20 Comments</a></li>
+						<li><a href="#"><i class="glyphicon glyphicon-heart"></i>300 Likes</a></li>
+					</ul>				
+			 </div>
+			 <p>Aliquam suscipit neque massa, eu maximus felis gravida vel. Vestibulum lacinia risus risus, ut iaculis felis fermentum id. Cras at vulputate velit, vitae vestibulum augue. Etiam lorem nunc, mattis ac dignissim sit amet, varius et ex. Phasellus eleifend nibh justo, pulvinar cursus sapien commodo non.</p>
+			 <a href='/test_views/single' class="blog-read" >Read More</a>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="blog3-w3ls">
+		<div class="col-md-4 blog-image-w3l">
+			<a href='/test_views/single'><img src='<%= asset_path 'ng3.jpg' %>' alt=" " /></a>
+		</div>
+		<div class="col-md-8 blog-text-w3ls">
+			<a href='/test_views/single'><h4>Nam eget ligula eu</h4></a>
+			<div class="item_info">
+					<ul>
+						<li><a href="#"><i class="glyphicon glyphicon-user"></i>Admin</a></li>
+						<li><i class="glyphicon glyphicon-calendar"></i>24.Aug.2015</li>
+						<li><a href="#"><i class="glyphicon glyphicon-comment"></i>20 Comments</a></li>
+						<li><a href="#"><i class="glyphicon glyphicon-heart"></i>300 Likes</a></li>
+					</ul>				
+			 </div>
+			 <p>Aliquam suscipit neque massa, eu maximus felis gravida vel. Vestibulum lacinia risus risus, ut iaculis felis fermentum id. Cras at vulputate velit, vitae vestibulum augue. Etiam lorem nunc, mattis ac dignissim sit amet, varius et ex. Phasellus eleifend nibh justo, pulvinar cursus sapien commodo non.</p>
+			 <a href='/test_views/single' class="blog-read" >Read More</a>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	-->
+	
+</div>
+</div>
