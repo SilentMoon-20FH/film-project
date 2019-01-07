@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/test_views/games'
   get '/test_views/news'
   get '/test_views/newsfind'
+  get '/test_views/tagfind'
   get '/test_views/single'
   get '/test_views/home'
   get '/test_views/aboutme'
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
   post '/test_views/unfollowfunc'
   post '/test_views/uploadpic'
   post '/test_views/find_in_single'
-  
+  get '/test_views/find_in_tag'
   #模版首页
   root 'test_views#home'
   

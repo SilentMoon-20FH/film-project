@@ -6,7 +6,7 @@ class TestViewsController < ApplicationController
     end
     
     def about
-        
+        @tagIdList=Tag.order("score").limit(8)
     end
     
     def contact
@@ -16,7 +16,43 @@ class TestViewsController < ApplicationController
     end
     
     def home
-        @gameId = 1
+                game_hash=Hash.new
+        for g in Game.all
+            game_hash.store(g.id,g.score)
+        end
+        m1=5
+        m2=0.5
+        
+        if user_signed_in?
+            curUser = current_user
+            if Comment.where("user_id=?",curUser).count>0
+                curUser_score_ave=0
+                for com in Comment.where("user_id=?",curUser)
+                    curUser_score_ave=curUser_score_ave+com.score
+                end
+                curUser_score_ave=curUser_score_ave/Comment.where("user_id=?",curUser).count
+                
+                for com in Comment.where("user_id=?",curUser)
+                    for rtag in Rgametag.where("game_id=?",com.game_id)
+                        for rgame in Rgametag.where("tag_id=?",rtag.tag_id)
+                            score_c=game_hash[rgame.game_id]+m1+m2*(com.score-curUser_score_ave)
+                            game_hash.delete(rgame.game_id)
+                            game_hash.store(rgame.game_id,score_c)
+                        end
+                    end
+                end
+                
+            end
+        end
+        
+        game_hash.sort_by do |v|
+            v[1]
+        end
+        
+        
+        
+        @tagIdList=Tag.order("score").limit(8)
+        @gameIdList=game_hash.keys.reverse
         render :layout => 'home'
     end
     
@@ -29,6 +65,41 @@ class TestViewsController < ApplicationController
     
     def single
         gameId = params[:gameId]
+        
+        game_hash=Hash.new
+        for g in Game.all
+            game_hash.store(g.id,g.score)
+        end
+        m1=5
+        m2=0.5
+        if user_signed_in?
+            curUser = current_user
+            if Comment.where("user_id=?",curUser).count>0
+                curUser_score_ave=0
+                for com in Comment.where("user_id=?",curUser)
+                    curUser_score_ave=curUser_score_ave+com.score
+                end
+                curUser_score_ave=curUser_score_ave/Comment.where("user_id=?",curUser).count
+                
+                for com in Comment.where("user_id=?",curUser)
+                    for rtag in Rgametag.where("game_id=?",com.game_id)
+                        for rgame in Rgametag.where("tag_id=?",rtag.tag_id)
+                            score_c=game_hash[rgame.game_id]+m1+m2*(com.score-curUser_score_ave)
+                            game_hash.delete(rgame.game_id)
+                            game_hash.store(rgame.game_id,score_c)
+                        end
+                    end
+                end
+                
+            end
+        end
+        
+        game_hash.sort_by do |v|
+            v[1]
+        end
+        @gameIdList=game_hash.keys.reverse
+
+        
         
         #显示游戏信息
         @game = Game.find(gameId)
@@ -65,30 +136,30 @@ class TestViewsController < ApplicationController
         db.save
         
         #更新game评分
-        w1=0.5          #步长因子
+        game_num=Game.count
+        tag_num=Tag.count
+        w1=0.5/game_num          #步长因子
         up_game=Game.find(gameId)
-        m=Comment.where("user_id=?",curUser.id).count
         curUser_score_sum=0
         for curUser_comment in Comment.where("user_id=?",curUser.id)
             curUser_score_sum=curUser_score_sum-curUser_comment.score+db.score
         end
-        n=Comment.where("game_id=?",gameId).count
-        n=m*n
-        up_game.score=w1*curUser_score_sum/n+up_game.score
-        up_game.save
-        #更新tags评分
-        w2=0.5      #步长因子
-        for up_tag_id in Rgametag.where("game_id=?",gameId)
-            up_tag=Tag.find(up_tag_id.tag_id)
-            n=0
-            for search_game_id in Rgametag.where("tag_id=?",up_tag_id)
-                n=Comment.where("game_id=?",search_game_id.game_id).count
+        if curUser_score_sum!=0
+            n=Comment.where("game_id=?",gameId).count
+            up_game.score=(w1*curUser_score_sum)/n+up_game.score
+            up_game.save
+            #更新tags评分
+            w2=0.25/tag_num      #步长因子
+            for up_tag_id in Rgametag.where("game_id=?",gameId).all
+                up_tag=Tag.find(up_tag_id.tag_id)
+                n=0
+                for search_game_id in Rgametag.where("tag_id=?",up_tag_id)
+                    n=n+Comment.where("game_id=?",search_game_id.game_id).count
+                end
+                up_tag.score=up_tag.score+w2*curUser_score_sum/n
+                up_tag.save
             end
-            n=m*n
-            up_tag.score=w2*curUser_score_sum/n+up_tag.score
-            up_tag.save
         end
-        
         
         #跳转刷新single界面
         redirect_to :action => "single", :gameId => gameId
@@ -227,8 +298,24 @@ class TestViewsController < ApplicationController
         puts '=============================='
         redirect_to(:action => 'newsfind') 
     end
+    def find_in_tag
+        tagid = params[:tag_id]
+        $findlists=Rgametag.where("tag_id=?",tagid)
+        puts '=============================='
+        puts tagid
+        puts $findlists.empty?
+        puts '=============================='
+        redirect_to(:action => 'tagfind') 
+    end
     
     def newsfind
+        @findlists = $findlists
+        puts '#################################'
+        puts $findlists.empty?
+        puts @findlists.empty?
+        puts '#################################'
+    end
+    def tagfind
         @findlists = $findlists
         puts '#################################'
         puts $findlists.empty?
