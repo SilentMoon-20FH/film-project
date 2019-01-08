@@ -9,10 +9,13 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # 安装Bootstrap前端框架
-gem 'bootstrap-will_paginate', '1.0.0'
+#gem 'bootstrap-will_paginate', '1.0.0'
+gem 'kaminari'
 # Use sqlite3 as the database for Active Record
 #用户登录
 gem 'devise'
+#后台管理
+gem 'rails_admin', '~> 1.3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets

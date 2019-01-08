@@ -12,16 +12,34 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href='/test_views/home'><h1>Games <img src='<%= asset_path 'c1.png' %>' alt=" " /> Zone</h1></a>
+					<!--<a href='/test_views/home'><h1>Games <img src='<%= asset_path 'c1.png' %>' alt=" " /> Zone</h1></a>-->
 				</div>
 
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="hover-effect"><a href='/test_views/home'>Home</a></li>
+						<li class="hover-effect"><a href='/test_views/home'>首页</a></li>
 						<li class="hover-effect"><a href='/test_views/about'>About</a></li>
-						<li class="hover-effect"><a href='/test_views/games'>Games</a></li>
-						<li class="hover-effect"><a href='/test_views/news'>News</a></li>
-						<li class="hover-effect"><a href='/test_views/contact'>Contact</a></li>
+						<!--<li class="hover-effect active"><a href='/test_views/games'>Games</a></li>-->
+						<li class="hover-effect"><a href='/test_views/news'>游戏列表</a></li>
+						<!--<li class="hover-effect"><a href='/test_views/aboutme'>我的主页</a></li>-->
+						
+						<% if current_user %>
+						<li class="hover-effect"><a href='/test_views/aboutme'>我的主页</a></li>
+							<!--如果是管理员的话，显示后台管理链接-->
+							<% if current_user.isadmin>0 %>
+								<li class="hover-effect">
+						    		<li class="hover-effect"><a href='/admin'>后台管理</a></li>
+						    	</li>
+					    	<% end %>
+					    <li class="hover-effect">
+					    	<%= link_to('登出', destroy_user_session_path, :method => :delete) %>
+					    </li>
+					    <% else %>
+					    <li class="hover-effect">
+					    	<%= link_to('登录', new_session_path(:user)) %>
+					    </li>
+					    <% end %>
+						
 					</ul>
 				</div>
 
@@ -72,32 +90,36 @@
 				<tr>
 					<td>
 					<div class="trend-grid">
-						<h4>Racing Games</h4>
-						<img src='<%= asset_path 'tg1.jpg' %>' alt=" " class="img-responsive" />
+						<h4><%=@tagIdList[0].name%></h4>
+						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[0].id%>'>
+							<img src='<%= asset_path 'tg1.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					</td>
 				<!--</li>-->
 				<!--<li>-->
 				<td>
 					<div class="trend-grid">
-						<h4>3D Games</h4>
-						<img src='<%= asset_path 'tg2.jpg' %>' alt=" " class="img-responsive" />
+						<h4><%=@tagIdList[1].name%></h4>
+						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[1].id%>'>
+							<img src='<%= asset_path 'tg2.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					</td>
 				<!--</li>-->
 				<!--<li>-->
 				<td>
 					<div class="trend-grid">
-						<h4>Action Games</h4>
-						<img src='<%= asset_path 'tg3.jpg' %>' alt=" " class="img-responsive" />
+						<h4><%=@tagIdList[2].name%></h4>
+						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[2].id%>'>
+							<img src='<%= asset_path 'tg3.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					</td>
 				<!--</li>-->
 				<!--<li>-->
 				<td>
 					<div class="trend-grid">
-						<h4>Toy Games</h4>
-						<img src='<%= asset_path 'tg4.jpg' %>' alt=" " class="img-responsive" />
+						<h4><%=@tagIdList[3].name%></h4>
+						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[3].id%>'>
+							<img src='<%= asset_path 'tg4.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					</td>
 				</table>
@@ -168,64 +190,66 @@
 	</div>
 </div>
 <!-- //services-->
-
 <!-- new games -->
 <div class="new-w3-agile">
+
 	<div class="container">
 		<h3>New Games</h3>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
 			<img src='<%= asset_path 'ng1.jpg' %>' alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameId%>'><h4>Click here</h4></a>
+				<a href='/test_views/single?gameId=<%=@gameIdList[0]%>'><h4>Click here</h4></a>
 				<p>To learn more about this</p>
+
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
 			<img src='<%= asset_path 'ng2.jpg' %>' alt=" " />
 			<div class="mask">
-				<a href='/test_views/single'><h4>Click here</h4></a>
+				<a href='/test_views/single?gameId=<%=@gameIdList[1]%>'><h4>Click here</h4></a>
 				<p>To learn more about this</p>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
 			<img src='<%= asset_path 'ng3.jpg' %>' alt=" " />
 			<div class="mask">
-				<a href='/test_views/single'><h4>Click here</h4></a>
+				<a href='/test_views/single?gameId=<%=@gameIdList[2]%>'><h4>Click here</h4></a>
 				<p>To learn more about this</p>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
 			<img src='<%= asset_path 'ng4.jpg' %>' alt=" " />
 			<div class="mask">
-				<a href='/test_views/single'><h4>Click here</h4></a>
+				<a href='/test_views/single?gameId=<%=@gameIdList[3]%>'><h4>Click here</h4></a>
 				<p>To learn more about this</p>
+				
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
 			<img src='<%= asset_path 'ng5.jpg' %>' alt=" " />
 			<div class="mask">
-				<a href='/test_views/single'><h4>Click here</h4></a>
+				<a href='/test_views/single?gameId=<%=@gameIdList[4]%>'><h4>Click here</h4></a>
 				<p>To learn more about this</p>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
 			<img src='<%= asset_path 'ng6.jpg' %>' alt=" " />
 			<div class="mask">
-				<a href='/test_views/single'><h4>Click here</h4></a>
+				<a href='/test_views/single?gameId=<%=@gameIdList[5]%>'><h4>Click here</h4></a>
 				<p>To learn more about this</p>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
 			<img src='<%= asset_path 'ng7.jpg' %>' alt=" " />
 			<div class="mask">
-				<a href='/test_views/single'><h4>Click here</h4></a>
+				<a href='/test_views/single?gameId=<%=@gameIdList[6]%>'><h4>Click here</h4></a>
 				<p>To learn more about this</p>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
 			<img src='<%= asset_path 'ng8.jpg' %>' alt=" " />
 			<div class="mask">
-				<a href='/test_views/single'><h4>Click here</h4></a>
+				<a href='/test_views/single?gameId=<%=@gameIdList[7]%>'><h4>Click here</h4></a>
 				<p>To learn more about this</p>
 			</div>
 		</div>
@@ -234,6 +258,8 @@
 </div>
 <!-- //new games-->
 
+
+<!--
 <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div>
 
 <div class="services-bottom-w3-agileits">
@@ -266,8 +292,9 @@
 						</ul>
 					</div>
 				</section>
+				-->
 						<!-- flexSlider -->
-							
+				<!--			
 							<script defer src="js/jquery.flexslider.js"></script>
 							<script type="text/javascript">
 							$(window).load(function(){
@@ -279,7 +306,10 @@
 							  });
 							});
 						  </script>
+				<!--
 						<!-- //flexSlider -->
+<!--
 			</div>
 		</div>
 	</div>
+-->

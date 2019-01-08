@@ -1,13 +1,13 @@
 <div class="events-section2-agileinfo">
 <div class="container">
 	
-	<!--修改了下面的第一个-->
-	
-	<% gamelists = Game.all %>
+	<% gamelists = @findlists %>
+	<% puts '+++++++++++++++++++++++++' %>
+	<% puts gamelists.empty? %>
+	<% puts '+++++++++++++++++++++++++' %>
 	<% if gamelists.empty? %>
-		<h1>还没有游戏哦</h1>
+		<h1>没有找到相关游戏哦</h1>
 	<% else %>
-		<% gamelists=gamelists.page(params[:page]).per(5) %>
 		
 		<% gamelists.each do |game| %>
 		<div class="blog1-w3ls">
@@ -30,7 +30,6 @@
 			<div class="clearfix"></div>
 		</div>
 		<% end %>
-		<%= paginate gamelists %>
 		
 	<% end %>
 	

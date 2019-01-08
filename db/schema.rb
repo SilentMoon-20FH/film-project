@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181207063228) do
+ActiveRecord::Schema.define(version: 20181218142354) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20181207063228) do
     t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "score"
+    t.float "score"
   end
 
   create_table "lists", force: :cascade do |t|
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20181207063228) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "score"
+    t.float "score"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,6 +74,10 @@ ActiveRecord::Schema.define(version: 20181207063228) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "follownum"
+    t.integer "fannum"
+    t.binary "picture"
+    t.integer "isadmin", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,5 +1,6 @@
 
 <!-- breadcrumbs -->
+<!--
 	<div class="agileits_breadcrumbs">
 		<div class="container">
 			<div class="agileits_breadcrumbs_left">
@@ -14,6 +15,7 @@
 			<div class="clearfix"> </div>
 		</div>
 	</div>
+	-->
 <!-- //breadcrumbs -->
 <!-- single -->
 	<div class="blog">
@@ -70,17 +72,18 @@
 						<h3>还没有人评论，分享你的看法吧</h3>
 					<% else %>
 						<ul>
-						<%	@commentLists.each do |c| %>
+							<%	@commentLists.each do |c| %>
 							<li>
-								<%= User.find(c.user_id).email %> ||
+								<a href='/test_views/aboutother?userId=<%=c.user_id%>'><%= User.find(c.user_id).email %></a> ||
 								<%= c.created_at.year%>.<%= c.created_at.month%>.<%= c.created_at.day%>.
 								<%= c.created_at.hour%>:<%= c.created_at.min%> ||
 								<%= if c.score==nil then 3 else c.score end %>分
 								<br>
 								<%= c.content %>
 							</li>
-						<% end %>
+							<% end %>
 						</ul>
+						<%= paginate @commentLists %>
 					<% end %>
 				</div>
 				
@@ -105,7 +108,7 @@
 							
 							<textarea name="comment" placeholder="说点什么..." required="" rows="15"></textarea>
 							<input type="hidden" name="gameId" value="<%= @game.id %>">
-							<input type="submit" value="Submit">
+							<input type="submit" value="提交评论">
 						</form>
 					</div>
 					
@@ -123,8 +126,9 @@
 			</div>
 			<div class="col-md-5 wthree_blog_right">
 				<div class="w3ls_search">
-					<form action="#" method="post">
-						<input type="text" name="Search" placeholder="Search on our blog" required="">
+					<form action="/test_views/find_in_single" method="post">
+						<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+						<input type="text" name="gamename" placeholder="你想找的游戏叫什么名字？" required="">
 						<input type="submit" value=" ">
 					</form>
 				</div>
@@ -154,22 +158,22 @@
 				<div class="w3agile_flickr_posts">
 					<h3>Flickr Posts</h3>
 					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single'><img src='<%= asset_path 'ng1.jpg' %>' alt=" " class="img-responsive" /></a>
+						<a href='/test_views/single?gameId=<%=@gameIdList[0]%>'><img src='<%= asset_path 'ng1.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single'><img src='<%= asset_path 'ng2.jpg' %>' alt=" " class="img-responsive" /></a>
+						<a href='/test_views/single?gameId=<%=@gameIdList[1]%>'><img src='<%= asset_path 'ng2.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single'><img src='<%= asset_path 'ng3.jpg' %>' alt=" " class="img-responsive" /></a>
+						<a href='/test_views/single?gameId=<%=@gameIdList[2]%>'><img src='<%= asset_path 'ng3.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single'><img src='<%= asset_path 'ng4.jpg' %>' alt=" " class="img-responsive" /></a>
+						<a href='/test_views/single?gameId=<%=@gameIdList[3]%>'><img src='<%= asset_path 'ng4.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single'><img src='<%= asset_path 'ng5.jpg' %>' alt=" " class="img-responsive" /></a>
+						<a href='/test_views/single?gameId=<%=@gameIdList[4]%>'><img src='<%= asset_path 'ng5.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single'><img src='<%= asset_path 'ng6.jpg' %>' alt=" " class="img-responsive" /></a>
+						<a href='/test_views/single?gameId=<%=@gameIdList[5]%>'><img src='<%= asset_path 'ng6.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="clearfix"> </div>
 				</div>
