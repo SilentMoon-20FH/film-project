@@ -23,7 +23,7 @@
 			<div class="col-md-7 wthree_blog_left">
 				<div class="wthree_blog_left_grid">
 					<div class="wthree_blog_left_grid_slider">
-						<img src='<%= asset_path 's1.jpg' %>' alt=" " class="img-responsive" />
+						<img src='<%=@game.pic%>' alt=" " class="img-responsive" />
 					</div>
 					<h4>
 						<% @tagLists.each do |taglist| %>
@@ -158,22 +158,22 @@
 				<div class="w3agile_flickr_posts">
 					<h3>Flickr Posts</h3>
 					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single?gameId=<%=@gameIdList[0]%>'><img src='<%= asset_path 'ng1.jpg' %>' alt=" " class="img-responsive" /></a>
+						<a href='/test_views/single?gameId=<%=@gameIdList[0]%>'><img src='<%=Game.find(@gameIdList[0]).pic%>' alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single?gameId=<%=@gameIdList[1]%>'><img src='<%= asset_path 'ng2.jpg' %>' alt=" " class="img-responsive" /></a>
+						<a href='/test_views/single?gameId=<%=@gameIdList[1]%>'><img src='<%=Game.find(@gameIdList[1]).pic%>'  alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single?gameId=<%=@gameIdList[2]%>'><img src='<%= asset_path 'ng3.jpg' %>' alt=" " class="img-responsive" /></a>
+						<a href='/test_views/single?gameId=<%=@gameIdList[2]%>'><img src='<%=Game.find(@gameIdList[2]).pic%>'  alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single?gameId=<%=@gameIdList[3]%>'><img src='<%= asset_path 'ng4.jpg' %>' alt=" " class="img-responsive" /></a>
+						<a href='/test_views/single?gameId=<%=@gameIdList[3]%>'><img src='<%=Game.find(@gameIdList[3]).pic%>'  alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single?gameId=<%=@gameIdList[4]%>'><img src='<%= asset_path 'ng5.jpg' %>' alt=" " class="img-responsive" /></a>
+						<a href='/test_views/single?gameId=<%=@gameIdList[4]%>'><img src='<%=Game.find(@gameIdList[4]).pic%>'  alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single?gameId=<%=@gameIdList[5]%>'><img src='<%= asset_path 'ng6.jpg' %>' alt=" " class="img-responsive" /></a>
+						<a href='/test_views/single?gameId=<%=@gameIdList[5]%>'><img src='<%=Game.find(@gameIdList[5]).pic%>'  alt=" " class="img-responsive" /></a>
 					</div>
 					<div class="clearfix"> </div>
 				</div>
