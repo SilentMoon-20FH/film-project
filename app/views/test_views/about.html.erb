@@ -7,24 +7,31 @@
 				<div class="col-md-8 col-sm-8 collection-right">
 					<div class="col-md-4 col-sm-4 collection-grid collection-text collection-grid-1">
 						<img src='<%= asset_path 'c1.png' %>' alt="">
-						<h3>Convallis </h3>
-						<p>A elementum ligula lacus ac quam ultrices a scelerisque praesent vel suspendisse scelerisque.</p>
+						<h3><%=@tagIdList[0].name%> </h3>
+						<% @game_name_array[0].each do |game_name| %>
+							<p><%=game_name%></p>
+						<%end%>
+
 					</div>
 					<div class="col-md-4 col-sm-4 collection-grid collection-image collection-grid-2">
 						
 					</div>
 					<div class="col-md-4 col-sm-4 collection-grid collection-text collection-grid-3">
 						<img src='<%= asset_path 'c2.png' %>' alt="" />
-						<h3>Lacinia</h3>
-						<p>A elementum ligula lacus ac quam ultrices a scelerisque praesent vel suspendisse scelerisque.</p>
+						<h3><%=@tagIdList[1].name%></h3>
+						<% @game_name_array[1].each do |game_name| %>
+							<p><%=game_name%></p>
+						<%end%>
 					</div>
 					<div class="col-md-4 col-sm-4 collection-grid collection-image collection-grid-4">
 						
 					</div>
 					<div class="col-md-4 col-sm-4 collection-grid collection-text collection-grid-5">
 						<img src='<%= asset_path 'c3.png' %>' alt="" />
-						<h3>Sapien</h3>
-						<p>A elementum ligula lacus ac quam ultrices a scelerisque praesent vel suspendisse scelerisque.</p>
+						<h3><%=@tagIdList[2].name%></h3>
+						<% @game_name_array[2].each do |game_name| %>
+							<p><%=game_name%></p>
+						<%end%>
 					</div>
 					<div class="col-md-4 col-sm-4 collection-grid collection-image collection-grid-6">
 					
@@ -40,34 +47,37 @@
 <div class="new-w3-agile">
 
 	<div class="container">
-		<h3>New Games</h3>
+		<h3>Hot Tags</h3>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%= asset_path 'ng1.jpg' %>' alt=" " />
+			<img src='<%=@pic_list[0]%>' height="255px"  alt=" " />
+			<div class="mask">
+				<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[0].id%>'><h4>Click here</h4></a>
+				<p>To learn more about this</p>
+				<h4><%=@tagIdList[0].name%></h4>
+			</div>
+		</div>
+		<div class="col-md-3 new-grid-w3l view view-eighth">
+			<img src='<%=@pic_list[1]%>' height="255px"  alt=" " />
 			<div class="mask">
 				<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[1].id%>'><h4>Click here</h4></a>
 				<p>To learn more about this</p>
+				<h4><%=@tagIdList[1].name%></h4>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%= asset_path 'ng2.jpg' %>' alt=" " />
+			<img src='<%=@pic_list[2]%>' height="255px"  alt=" " />
 			<div class="mask">
 				<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[2].id%>'><h4>Click here</h4></a>
 				<p>To learn more about this</p>
+				<h4><%=@tagIdList[2].name%></h4>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%= asset_path 'ng3.jpg' %>' alt=" " />
+			<img src='<%=@pic_list[3]%>' height="255px"  alt=" " />
 			<div class="mask">
 				<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[3].id%>'><h4>Click here</h4></a>
 				<p>To learn more about this</p>
-			</div>
-		</div>
-		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%= asset_path 'ng4.jpg' %>' alt=" " />
-			<div class="mask">
-					<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[4].id%>'><h4>Click here</h4></a>
-				<p>To learn more about this</p>
-				
+				<h4><%=@tagIdList[3].name%></h4>
 			</div>
 		</div>
 
