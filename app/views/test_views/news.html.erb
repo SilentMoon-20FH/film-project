@@ -3,7 +3,7 @@
 	
 	<!--修改了下面的第一个-->
 	
-	<% gamelists = Game.all %>
+	<% gamelists = Game.all.order(score: :desc) %>
 	<% if gamelists.empty? %>
 		<h1>还没有游戏哦</h1>
 	<% else %>
@@ -28,7 +28,7 @@
 				 <!--<a href='/test_views/single' class="blog-read" >Read More</a>-->
 			</div>
 			<div class="clearfix"></div>
-		</div>
+		</div></br>
 		<% end %>
 		<%= paginate gamelists %>
 		

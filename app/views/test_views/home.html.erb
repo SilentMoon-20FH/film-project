@@ -83,15 +83,16 @@
 <!-- trend -->
 <div class="trend-w3layouts">
 	<div class="container">
-		<h2>Trending Games</h2>
+		<h2>推荐标签</h2>
 		<!--<ul id="flexiselDemo1" > -->
 		<table>
 				<!--<li>-->
 				<tr>
 					<td>
 					<div class="trend-grid">
-						<h4><%=Tag.find(@tagIdList[0]).name%></h4>
+						
 						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[0]%>'>
+							<h4><%=Tag.find(@tagIdList[0]).name%></h4>
 							<img src='<%= asset_path 'tg1.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					</td>
@@ -99,17 +100,19 @@
 				<!--<li>-->
 				<td>
 					<div class="trend-grid">
-						<h4><%=Tag.find(@tagIdList[1]).name%></h4>
+						
 						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[1]%>'>
-							<img src='<%= asset_path 'tg2.jpg' %>' alt=" " class="img-responsive" /></a>
+							<h4><%=Tag.find(@tagIdList[1]).name%></h4>
+							<img src= '<%= asset_path 'tg2.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					</td>
 				<!--</li>-->
 				<!--<li>-->
 				<td>
 					<div class="trend-grid">
-						<h4><%=Tag.find(@tagIdList[2]).name%></h4>
+						
 						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[2]%>'>
+							<h4><%=Tag.find(@tagIdList[2]).name%></h4>
 							<img src='<%= asset_path 'tg3.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					</td>
@@ -117,8 +120,9 @@
 				<!--<li>-->
 				<td>
 					<div class="trend-grid">
-						<h4><%=Tag.find(@tagIdList[3]).name%></h4>
+						
 						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[3]%>'>
+							<h4><%=Tag.find(@tagIdList[3]).name%></h4>
 							<img src='<%= asset_path 'tg4.jpg' %>' alt=" " class="img-responsive" /></a>
 					</div>
 					</td>
@@ -161,31 +165,38 @@
 <!-- services-->
 <div class="services-agileits-w3layouts">
 	<div class="container">
-		<h3>Services</h3>
-		<div class="col-md-3 service-grid-agileits service-grid-agileits-top">
-			<span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
-			<h4><%=@userIdList[0].email%></h4>
-			<p>粉丝数:<%=@userIdList[0].fannum%></p>
-			<a href='/test_views/aboutother?userId=<%=@userIdList[0].id%>'>Read More</a>
-		</div>
-		<div class="col-md-3 service-grid-agileits">
-			<span class="glyphicon glyphicon-random" aria-hidden="true"></span>
-			<h4><%=@userIdList[1].email%></h4>
-			<p>粉丝数:<%=@userIdList[1].fannum%></p>
-			<a href='/test_views/aboutother?userId=<%=@userIdList[1].id%>'>Read More</a>
-		</div>
-		<div class="col-md-3 service-grid-agileits service-grid-agileits-bottom">
-			<span class="glyphicon glyphicon-yen" aria-hidden="true"></span>
-			<h4><%=@userIdList[2].email%></h4>
-			<p>粉丝数:<%=@userIdList[2].fannum%></p>
-			<a href='/test_views/aboutother?userId=<%=@userIdList[2].id%>'>Read More</a>
-		</div>
-		<div class="col-md-3 service-grid-agileits service-grid-agileits-bottom">
-			<span class="glyphicon glyphicon-object-align-right" aria-hidden="true"></span>
-			<h4><%=@userIdList[3].email%></h4>
-			<p>粉丝数:<%=@userIdList[3].fannum%></p>
-			<a href='/test_views/aboutother?userId=<%=@userIdList[3].id%>'>Read More</a>
-		</div>
+		<h3>权威用户</h3>
+		<% user_list=@userIdList.first(4)%>
+		<% user_list.each do |user| %>
+			<div class="col-md-3 service-grid-agileits service-grid-agileits-top">
+      		<%if user.pic==nil %>
+        		<p class="avatar"> <img src='<%= asset_path 'avatar.jpg' %>' alt="" height=100> </p>
+      		<%else%>
+    		  	<p class="avatar"> <img src='<%=user.pic%>' alt="" height=100> </p>
+      		<%end%>
+				<h4><%=user.email%></h4>
+				<%if user.fannum==nil%>
+					<p>粉丝数: 0</p>
+				<%else%>
+					<p>粉丝数: <%=user.fannum%></p>
+				<%end%>
+				<p class="ab_name_t">个性签名：</p>
+				<%if user.information==nil or user.information==""%>
+				    <p class="ab_name_t">	这个人很懒，什么都没有留下。</p>
+				<%else
+					clists = user.information.split("\n")
+			  		clists.each do |ctext|
+				%>
+					<p class="ab_name_t">	<%= ctext %> </p>
+			 		<%end%>
+				<%end%>
+				<%if user==current_user%>
+					<a href='/test_views/aboutme'>Read More</a>
+				<%else%>
+					<a href='/test_views/aboutother?userId=<%=user.id%>'>Read More</a>
+				<%end%>
+			</div>
+		<%end%>
 		<div class="clearfix"></div>
 	</div>
 </div>
@@ -194,71 +205,71 @@
 <div class="new-w3-agile">
 
 	<div class="container">
-		<h3>Recommend Games</h3>
+		<h3>推荐游戏</h3>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
 			
 			<img src='<%=Game.find((@gameIdList[0])).pic%>' height="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[0]%>'><h4>Click here</p></h4>
-				<p>To learn more about</p>
-				<h4><%=Game.find(@gameIdList[0]).name%></h4>
+				<a href='/test_views/single?gameId=<%=@gameIdList[0]%>'><h4>点击这里</h4>
+				<p>以了解</p>
+				<h4><%=Game.find(@gameIdList[0]).name%></h4></a>
 			</div>
 			
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
 			<img src='<%=Game.find((@gameIdList[1])).pic%>' height="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[1]%>'><h4>Click here</h4></a>
-				<p>To learn more about</p>
-				<h4><%=Game.find(@gameIdList[1]).name%></h4>
+				<a href='/test_views/single?gameId=<%=@gameIdList[1]%>'><h4>点击这里</h4>
+				<p>以了解</p>
+				<h4><%=Game.find(@gameIdList[1]).name%></h4></a>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
 			<img src='<%=Game.find((@gameIdList[2])).pic%>'  height="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[2]%>'><h4>Click here</h4></a>
-				<p>To learn more about</p>
-				<h4><%=Game.find(@gameIdList[2]).name%></h4>
+				<a href='/test_views/single?gameId=<%=@gameIdList[2]%>'><h4>点击这里</h4>
+				<p>以了解</p>
+				<h4><%=Game.find(@gameIdList[2]).name%></h4></a>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
 			<img src='<%=Game.find((@gameIdList[3])).pic%>' height="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[3]%>'><h4>Click here</h4></a>
-				<p>To learn more about</p>
-				<h4><%=Game.find(@gameIdList[3]).name%></h4>
+				<a href='/test_views/single?gameId=<%=@gameIdList[3]%>'><h4>点击这里</h4>
+				<p>以了解</p>
+				<h4><%=Game.find(@gameIdList[3]).name%></h4></a>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
 			<img src='<%=Game.find((@gameIdList[4])).pic%>' height="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[4]%>'><h4>Click here</h4></a>
-				<p>To learn more about</p>
-				<h4><%=Game.find(@gameIdList[4]).name%></h4>
+				<a href='/test_views/single?gameId=<%=@gameIdList[4]%>'><h4>点击这里</h4>
+				<p>以了解</p>
+				<h4><%=Game.find(@gameIdList[4]).name%></h4></a>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
 			<img src='<%=Game.find((@gameIdList[5])).pic%>' height="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[5]%>'><h4>Click here</h4></a>
-				<p>To learn more about</p>
-				<h4><%=Game.find(@gameIdList[5]).name%></h4>
+				<a href='/test_views/single?gameId=<%=@gameIdList[5]%>'><h4>点击这里</h4>
+				<p>以了解</p>
+				<h4><%=Game.find(@gameIdList[5]).name%></h4></a>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
 			<img src='<%=Game.find((@gameIdList[6])).pic%>' height="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[6]%>'><h4>Click here</h4></a>
-				<p>To learn more about</p>
-				<h4><%=Game.find(@gameIdList[6]).name%></h4>
+				<a href='/test_views/single?gameId=<%=@gameIdList[6]%>'><h4>点击这里</h4>
+				<p>以了解</p>
+				<h4><%=Game.find(@gameIdList[6]).name%></h4></a>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
 			<img src='<%=Game.find((@gameIdList[7])).pic%>' height="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[7]%>'><h4>Click here</h4></a>
-				<p>To learn more about</p>
-				<h4><%=Game.find(@gameIdList[7]).name%></h4>
+				<a href='/test_views/single?gameId=<%=@gameIdList[7]%>'><h4>点击这里</h4>
+				<p>以了解</p>
+				<h4><%=Game.find(@gameIdList[7]).name%></h4></a>
 			</div>
 		</div>
 		<div class="clearfix"></div>

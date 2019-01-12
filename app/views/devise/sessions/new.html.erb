@@ -1,26 +1,34 @@
-<div id="container">
+
+<div id="container" >
 		<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-				<div class="login">欢迎回来</div>
-				<div class="username-text">邮箱:</div>
-				<div class="password-text">密码:</div>
-				<div class="username-field">
-				  <%= f.email_field :email, autocomplete: "email" %>
-				</div>
-				<div class="password-field">
-					<%= f.password_field :password, autocomplete: "current-password" %>
-				</div>
-			<div class="actions" style="margin-left:415px;">
-			  <%= f.submit "登录" %>
+      <style type="text/css">
+      body{
+			  background: url(http://i2.hdslb.com/bfs/archive/164dffb952f2c744276730034981fdc75bfdc92c.jpg) no-repeat fixed center;
+			  background-size: 100%;
+        }
+				</style>
+				<table frame="void" style="background-color:white" align="center"><tr><td>
+				<h1><div class="login">欢迎回来</div></h1></td></tr></table></br></br>
+				<table  width=400 height=80 frame="void" style="background-color:white" align="center">
+				<tr><td><div class="username-field">
+				  <h4>邮箱: <%= f.email_field :email, autocomplete: "email" %></h4>
+				</div></td></tr>
+				<tr><td><div class="password-field">
+					<h4>密码: <%= f.password_field :password, autocomplete: "current-password" %></h4>
+				</div></td></tr>
+				</table></br>
+			<div class="actions" >
+			  <h4><%= f.submit "登录" %></h4>
 			</div>
     <% end %>
 </div>
-<%= render "devise/shared/links" %>
-<div id="footer">
-		  与世界分享你的视界 
-</div>
+
+		</br><table frame="void" style="background-color:white" align="center"><tr><td>
+        <h2>与世界分享你的视界</h2></td></tr>
 
 
 <!--
+<%= render "devise/shared/links" %>
 <h2>登录</h2>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
