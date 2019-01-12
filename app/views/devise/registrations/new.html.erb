@@ -1,27 +1,34 @@
 		<div id="container">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
-        
-				<div class="login">瞧你发现了什么</div>
-				<div class="username-text">邮箱:</div>
-				<div class="password-text">密码:</div>
-				<div class="username-field">
-					<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-				</div>
+        <style type="text/css">
+        body{
+				  background: url(http://i0.hdslb.com/bfs/archive/8837a8fbf43b1167354807cd4e80b55ad0bbe9c0.jpg) no-repeat fixed center;
+				  background-size: 100%;
+
+        }
+				</style>
+				<table frame="void" style="background-color:white" align="center"><tr><td>
+				<h1>瞧你发现了什么</h1>
+				</h1></td></tr></table></br></br>
+				<table width=400 height=120 frame="void" style="background-color:white" align="center">
+				<tr><td><div class="username-field">
+					<h4>邮箱: <%= f.email_field :email, autofocus: true, autocomplete: "email" %></h4>
+				</div></td></tr><tr><td>
 				<div class="password-field">
-          <%= f.password_field :password, autocomplete: "new-password" %>
-				</div>
-				<div class="password-text" style="margin-left:35px;">确认密码:</div>
-				<div class="password-field" style="margin-left:35px;">
-				  <%= f.password_field :password_confirmation, autocomplete: "new-password" %>  
-				</div>
-				<div class="actions" style="margin-left:415px">
-          <%= f.submit "注册" %>
+          <h4>密码: <%= f.password_field :password, autocomplete: "new-password" %></h4>
+				</div></td></tr><tr><td>
+				<div class="password-field" style="margin-right:36px;">
+				  <h4>确认密码: <%= f.password_field :password_confirmation, autocomplete: "new-password" %></h4>
+				</div></td></tr></table></br>
+				<div class="actions">
+          <h4><%= f.submit "注册" %></h4>
         </div>
       <% end %>
 		</div>
+
+		</br><table frame="void" style="background-color:white" align="center"><tr><td>
+			<h2>与世界分享你的视界</h2>
+			</td></tr></table>
+		<!--
 		<%= render "devise/shared/links" %>
-		<div id="footer">
-			与世界分享你的视界 
-			<!--<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a>-->
-		</div>
