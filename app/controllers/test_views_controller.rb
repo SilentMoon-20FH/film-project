@@ -6,21 +6,21 @@ class TestViewsController < ApplicationController
     end
     
     def about
-        tag_list=Tag.order("score").reverse
+        tag_list=Tag.order(score: :desc)
         @tagIdList=tag_list
         hs=Hash.new
         for rg in Rgametag.where("tag_id=?",tag_list[0])
-            hs.store(Game.find(rg.game_id).name,Game.find(rg.game_id).score)
+            hs.store(rg.game_id,Game.find(rg.game_id).score)
         end
         game_name_list0=Hash[hs.sort_by{|key, val|val}].keys.reverse[0,3]
         hs=hs.clear
         for rg in Rgametag.where("tag_id=?",tag_list[1])
-            hs.store(Game.find(rg.game_id).name,Game.find(rg.game_id).score)
+            hs.store(rg.game_id,Game.find(rg.game_id).score)
         end
         game_name_list1=Hash[hs.sort_by{|key, val|val}].keys.reverse[0,3]
         hs=hs.clear
         for rg in Rgametag.where("tag_id=?",tag_list[2])
-            hs.store(Game.find(rg.game_id).name,Game.find(rg.game_id).score)
+            hs.store(rg.game_id,Game.find(rg.game_id).score)
         end
         game_name_list2=Hash[hs.sort_by{|key, val|val}].keys.reverse[0,3]
         @game_name_array=[game_name_list0,game_name_list1,game_name_list2]
@@ -34,7 +34,8 @@ class TestViewsController < ApplicationController
                     pic=Game.find(r.game_id).pic
                 end
             end
-            game_pic_list<<pic
+            game_pic_list.push(pic)
+            
             
         end
         @pic_list=game_pic_list
@@ -86,7 +87,7 @@ class TestViewsController < ApplicationController
 
         @tagIdList=Hash[tag_hash.sort_by{|key, val|val}].keys.reverse
         @gameIdList=Hash[game_hash.sort_by{|key, val|val}].keys.reverse
-        @userIdList=User.order('fannum').reverse
+        @userIdList=User.order(fannum: :desc)
         render :layout => 'home'
     end
     
@@ -181,14 +182,14 @@ class TestViewsController < ApplicationController
             up_game.score=(w1*curUser_score_sum)/n+up_game.score
             up_game.save
             #更新tags评分
-            w2=0.25/tag_num      #步长因子
-            for up_tag_id in Rgametag.where("game_id=?",gameId).all
+            w2=0.25      #步长因子
+            for up_tag_id in Rgametag.where("game_id=?",gameId)
                 up_tag=Tag.find(up_tag_id.tag_id)
                 n=0
-                for search_game_id in Rgametag.where("tag_id=?",up_tag_id)
+                for search_game_id in Rgametag.where("tag_id=?",up_tag.id)
                     n=n+Comment.where("game_id=?",search_game_id.game_id).count
                 end
-                up_tag.score=up_tag.score+w2*curUser_score_sum/n
+                up_tag.score=up_tag.score+(w2*curUser_score_sum/(n*tag_num))
                 up_tag.save
             end
         end
@@ -197,7 +198,25 @@ class TestViewsController < ApplicationController
         redirect_to :action => "single", :gameId => gameId
         
     end
-    
+    def writeinformation
+        userId = params[:userId]
+        information = params[:introduction]  
+        pic_id = params[:pic_id]
+        change_user=User.find(userId)
+        if pic_id==nil
+            pic_url=change_user.pic
+        else
+            pic_url=pic_id
+        end
+        
+        if information!=nil and information!=""
+            change_user.information=information
+        end
+        change_user.pic=pic_url
+        change_user.save
+        redirect_to :action => "aboutme", :userId => userId
+
+    end
     #个人主页
     def aboutme
         @user = User.find(current_user.id)  

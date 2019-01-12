@@ -32,12 +32,6 @@
 						<% end %>
 					</h4>
 					<h3><%= @game.name %></h3>
-					<ul>
-						<li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><a href="#">Jan Mark</a><i>|</i></li>
-						<li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><a href="#">20</a><i>|</i></li>
-						<li><span class="glyphicon glyphicon-tag" aria-hidden="true"></span><a href="#">5</a><i>|</i></li>
-						<li><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Voluptatibus</li>
-					</ul>
 					<!--<p>Duis venenatis, mi quis malesuada ultricies, nisi nisl posuere sapien,
 						id egestas lectus urna et massa. Morbi mauris turpis, posuere auctor auctor 
 						ornare, auctor nec lectus. Class aptent taciti sociosqu ad litora torquent 
@@ -57,15 +51,6 @@
 								<p>	<%= text %> </p>
 						<%end%>
 				</div>
-				<div class="agileits_share">
-					<ul>
-						<li><a class="linkedin" href="#"></a></li>
-						<li><a class="google" href="#"></a></li>
-						<li><a class="twitter" href="#"></a></li>
-						<li><a class="facebook" href="#"></a></li>
-					</ul>
-				</div>
-				
 				<div class="w3l_categories">
 					<h3>精彩评论</h3>
 					<% if @commentLists.empty? %>
@@ -79,7 +64,14 @@
 								<%= c.created_at.hour%>:<%= c.created_at.min%> ||
 								<%= if c.score==nil then 3 else c.score end %>分
 								<br>
-								<%= c.content %>
+								<% 
+									clists = c.content.split("\n")
+									clists.each do |ctext|
+								%>
+										<p>	<%= ctext %> </p>
+								<%end%>
+
+								
 							</li>
 							<% end %>
 						</ul>
@@ -116,7 +108,7 @@
 					
 					<div class="agileits_reply">
 						<h3>您还没有登录，不能评论哟</h3>
-						<h3><a href='/login/index'>去登陆</a></h3>
+						<h3><a href='/users/sign_in'>去登陆</a></h3>
 						<!-- <img src='<%= asset_path 'c2.jpg' %>' alt=" " class="img-responsive"/> -->
 					</div>
 				
@@ -133,48 +125,13 @@
 					</form>
 				</div>
 				<div class="w3l_categories">
-					<h3>Categories</h3>
-					<ul>
-						<li><a href='/test_views/single'>Vitae gravida elit fringilla nec sociosqu</a></li>
-						<li><a href='/test_views/single'>Morbi mauris turpis, posuere auctor auctor</a></li>
-						<li><a href='/test_views/single'>Class aptent taciti sociosqu litora torquent</a></li>
-						<li><a href='/test_views/single'>Duis venenatis, mi quis malesuada ultricies</a></li>
-						<li><a href='/test_views/single'>Egestas lectus urna et massa morbi mauris</a></li>
-						<li><a href='/test_views/single'>Torquent conubia nostra inceptos himenaeos</a></li>
-						<li><a href='/test_views/single'>Urna et massa morbi mauris turpis, posuere</a></li>
-					</ul>
-				</div>
-				
-				<div class="w3l_archives">
-					<h3>Archives</h3>
-					<ul>
-						<li>2 August 2017</li>
-						<li>14 August 2017</li>
-						<li>23 August 2017</li>
-						<li>8 September 2017</li>
-						<li>18 September 2017</li>
-					</ul>
-				</div>
-				<div class="w3agile_flickr_posts">
-					<h3>Flickr Posts</h3>
-					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single?gameId=<%=@gameIdList[0]%>'><img src='<%=Game.find(@gameIdList[0]).pic%>' alt=" " class="img-responsive" /></a>
-					</div>
-					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single?gameId=<%=@gameIdList[1]%>'><img src='<%=Game.find(@gameIdList[1]).pic%>'  alt=" " class="img-responsive" /></a>
-					</div>
-					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single?gameId=<%=@gameIdList[2]%>'><img src='<%=Game.find(@gameIdList[2]).pic%>'  alt=" " class="img-responsive" /></a>
-					</div>
-					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single?gameId=<%=@gameIdList[3]%>'><img src='<%=Game.find(@gameIdList[3]).pic%>'  alt=" " class="img-responsive" /></a>
-					</div>
-					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single?gameId=<%=@gameIdList[4]%>'><img src='<%=Game.find(@gameIdList[4]).pic%>'  alt=" " class="img-responsive" /></a>
-					</div>
-					<div class="w3agile_flickr_post_left">
-						<a href='/test_views/single?gameId=<%=@gameIdList[5]%>'><img src='<%=Game.find(@gameIdList[5]).pic%>'  alt=" " class="img-responsive" /></a>
-					</div>
+					<h3>推荐游戏</h3>
+					<a href='/test_views/single?gameId=<%=@gameIdList[0]%>'><img src='<%=Game.find(@gameIdList[0]).pic%>'  alt=" " class="img-responsive" /></a><br/>
+					<a href='/test_views/single?gameId=<%=@gameIdList[1]%>'><img src='<%=Game.find(@gameIdList[1]).pic%>'  alt=" " class="img-responsive" /></a><br/>
+					<a href='/test_views/single?gameId=<%=@gameIdList[2]%>'><img src='<%=Game.find(@gameIdList[2]).pic%>'  alt=" " class="img-responsive" /></a><br/>
+					<a href='/test_views/single?gameId=<%=@gameIdList[3]%>'><img src='<%=Game.find(@gameIdList[3]).pic%>'  alt=" " class="img-responsive" /></a><br/>
+					<a href='/test_views/single?gameId=<%=@gameIdList[4]%>'><img src='<%=Game.find(@gameIdList[4]).pic%>'  alt=" " class="img-responsive" /></a><br/>
+					<a href='/test_views/single?gameId=<%=@gameIdList[5]%>'><img src='<%=Game.find(@gameIdList[5]).pic%>'  alt=" " class="img-responsive" /></a><br/>
 					<div class="clearfix"> </div>
 				</div>
 			</div>

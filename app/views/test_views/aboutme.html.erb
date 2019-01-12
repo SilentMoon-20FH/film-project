@@ -5,6 +5,7 @@
     <a href="#" class="n1"><font color="#FFFFFF">我的评论</font></a>
     <a href="/test_views/aboutmefollowpage?userId=<%=current_user.id%>" class="n2"><font color="#FFFFFF">我的关注</font></a>
     <a href="/test_views/aboutmefanpage?userId=<%=current_user.id%>" class="n2"><font color="#FFFFFF">我的粉丝</font></a>
+    <a href="/test_views/aboutmechangepage?userId=<%=current_user.id%>" class="n2"><font color="#FFFFFF">修改个人信息</font></a>
   </h1>
   <div class="news_infos">
     <ul>
@@ -33,9 +34,11 @@
   </div>
   <div class="sidebar">
     <div class="about">
-      <p class="avatar">
-        <img src='<%= asset_path 'avatar.jpg' %>' alt="">
-      </p>
+      <%if current_user.pic==nil %>
+        <p class="avatar"> <img src='<%= asset_path 'avatar.jpg' %>' alt=""> </p>
+      <%else%>
+      <p class="avatar"> <img src='<%=current_user.pic%>' alt=""> </p>
+      <%end%>
       <p class="abname"><%= current_user.email %></p>
       <!--<p class="abposition">Web前端设计师、网页设计</p>-->
 
@@ -46,23 +49,36 @@
       <p class="abname">关注数：<%=current_user.follownum%></p>
       <%end%>
       <%if current_user.fannum==nil  %>      
-      <p class="abname">粉丝数：0 </p>
+      <p class="abname">粉丝数：0</p>
       <%else%>      
       <p class="abname">粉丝数：<%=current_user.fannum%></p>
       <%end%>
+			<br>
+			<p class="abname">个性签名</p>
+			<%if current_user.information==nil or current_user.information==""%>
+			    <p class="ab_name_t">	这个人很懒，什么都没有留下。</p>
+			<%else
+				clists = current_user.information.split("\n")
+			  clists.each do |ctext|
+			%>
+					<p class="ab_name_t">	<%= ctext %> </p>
+			  <%end%>
+			<%end%>
 
     </div>
     <div class="weixin">
       <h2 class="hometitle">推荐用户</h2>
       <ul>
-        <% userlists = User.all  %>
+        <% userlists = User.all.order(fannum: :desc)  %>
         <% if userlists.count==1 and userlists[0].id==current_user.id%>
         <p>您近期活动太少了，很难推荐哦</p>
         <% else %>
+          <% userlists=userlists.page(params[:page]).per(5) %>
           <% userlists.each do |u| %>
           <% if u.id==current_user.id then next end %>
             <a href='/test_views/aboutother?userId=<%=u.id%>'><%=u.email%></a><br/>
           <% end  %>
+          <%= paginate userlists %>
         <% end  %>
       </ul>
     </div>
