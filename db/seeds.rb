@@ -26,14 +26,14 @@ end
 
 
 
-Tag.create(name:"动作冒险",score:(S["动作冒险"]/C["动作冒险"]).round(1),pic:"app/assets/images/tag1.png")
-Tag.create(name:"动作",score:(S["动作"]/C["动作"]).round(1),pic:"app/assets/images/tag2.png")
-Tag.create(name:"冒险",score:(S["冒险"]/C["冒险"]).round(1),pic:"app/assets/images/tag3.png")
-Tag.create(name:"射击",score:(S["射击"]/C["射击"]).round(1),pic:"app/assets/images/tag4.png")
-Tag.create(name:"角色扮演",score:(S["角色扮演"]/C["角色扮演"]).round(1),pic:"app/assets/images/tag5.png")
-Tag.create(name:"格斗",score:(S["格斗"]/C["格斗"]).round(1),pic:"app/assets/images/tag6.png")
-Tag.create(name:"模拟",score:(S["模拟"]/C["模拟"]).round(1),pic:"app/assets/images/tag7.png")
-Tag.create(name:"策略",score:(S["策略"]/C["策略"]).round(1),pic:"app/assets/images/tag8.png")
+Tag.create(name:"动作冒险",score:(S["动作冒险"]/C["动作冒险"]).round(1),pic:"tag1.jpg")
+Tag.create(name:"动作",score:(S["动作"]/C["动作"]).round(1),pic:"tag2.jpg")
+Tag.create(name:"冒险",score:(S["冒险"]/C["冒险"]).round(1),pic:"tag3.jpg")
+Tag.create(name:"射击",score:(S["射击"]/C["射击"]).round(1),pic:"tag4.jpg")
+Tag.create(name:"角色扮演",score:(S["角色扮演"]/C["角色扮演"]).round(1),pic:"tag5.jpg")
+Tag.create(name:"格斗",score:(S["格斗"]/C["格斗"]).round(1),pic:"tag6.jpg")
+Tag.create(name:"模拟",score:(S["模拟"]/C["模拟"]).round(1),pic:"tag7.jpg")
+Tag.create(name:"策略",score:(S["策略"]/C["策略"]).round(1),pic:"tag8.jpg")
 
 gamecount=1
 CSV.foreach('/home/ubuntu/workspace/film-project/db/gamelist.csv',headers:true) do |row| 
