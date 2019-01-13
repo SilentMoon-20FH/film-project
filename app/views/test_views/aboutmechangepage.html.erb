@@ -1,0 +1,102 @@
+
+<div class="container">
+  <h1 class="t_nav">
+    <span>与世界分享你的视界</span>
+    <a href="/test_views/aboutme?userId=current_user.id" class="n2"><font color="#FFFFFF">我的评论</font></a>
+    <a href="/test_views/aboutmefollowpage?userId=<%=current_user.id%>" class="n2"><font color="#FFFFFF">我的关注</font></a>
+    <a href="/test_views/aboutmefanpage?userId=current_user.id" class="n2"><font color="#FFFFFF">我的粉丝</font></a>
+    <a href="#" class="n1"><font color="#FFFFFF">修改个人信息</font></a>
+  </h1>
+  <div class="news_infos">
+    <form action="/test_views/writeinformation" method="post">
+			<%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+			<table>
+			  <tr><td><p class="new_type">选择头像:</p></td></tr><tr>
+			<td><input name="pic_id" type="radio" value="https://img2.woyaogexing.com/2019/01/09/7d9bdd0d734c4519a6959978735ffc0a!400x400.jpeg" />
+			<img src="https://img2.woyaogexing.com/2019/01/09/7d9bdd0d734c4519a6959978735ffc0a!400x400.jpeg" alt=""> </td>
+			<td><input name="pic_id" type="radio" value="https://img2.woyaogexing.com/2019/01/08/9da1bbd55162448998705f470e5523e4!400x400.jpeg" />
+			<img src="https://img2.woyaogexing.com/2019/01/08/9da1bbd55162448998705f470e5523e4!400x400.jpeg" alt=""> </td> 
+			<td><input name="pic_id" type="radio" value="https://img2.woyaogexing.com/2019/01/07/4893c10ee5674058b57bd6e54dec8c88!400x400.jpeg" />
+			<img src="https://img2.woyaogexing.com/2019/01/07/4893c10ee5674058b57bd6e54dec8c88!400x400.jpeg" alt=""> </td>  
+			<td><input name="pic_id" type="radio" value="https://img2.woyaogexing.com/2019/01/07/dd4eaf9cc0e34f86b8287c3e12c455c9!400x400.jpeg" />
+			<img src="https://img2.woyaogexing.com/2019/01/07/dd4eaf9cc0e34f86b8287c3e12c455c9!400x400.jpeg" alt=""> </td>  
+			<td><input name="pic_id" type="radio" value="https://img2.woyaogexing.com/2019/01/06/5312b15382214a3182ef0bae85f5bc54!400x400.jpeg" />
+			<img src="https://img2.woyaogexing.com/2019/01/06/5312b15382214a3182ef0bae85f5bc54!400x400.jpeg" alt=""> </td>
+			</tr><tr>
+			<td><input name="pic_id" type="radio" value="https://img2.woyaogexing.com/2019/01/05/782dc5f9ac1948caa86816e30e07377f!400x400.jpeg" />
+			<img src="https://img2.woyaogexing.com/2019/01/05/782dc5f9ac1948caa86816e30e07377f!400x400.jpeg" alt=""> </td>
+			<td><input name="pic_id" type="radio" value="https://img2.woyaogexing.com/2019/01/05/bad0772069fd43a2ba07051f1e6694ba!400x400.jpeg" />
+			<img src="https://img2.woyaogexing.com/2019/01/05/bad0772069fd43a2ba07051f1e6694ba!400x400.jpeg" alt=""> </td> 
+			<td><input name="pic_id" type="radio" value="https://img2.woyaogexing.com/2019/01/05/19b7d0e258863ae9!400x400_big.jpg" />
+			<img src="https://img2.woyaogexing.com/2019/01/05/19b7d0e258863ae9!400x400_big.jpg" alt=""> </td>  
+			<td><input name="pic_id" type="radio" value="https://img2.woyaogexing.com/2019/01/05/c9b0deb3d37c4094a050cc8981bfe14a!400x400.jpeg" />
+			<img src="https://img2.woyaogexing.com/2019/01/05/c9b0deb3d37c4094a050cc8981bfe14a!400x400.jpeg" alt=""> </td>  
+			<td><input name="pic_id" type="radio" value="https://img2.woyaogexing.com/2019/01/03/8da0f960b67d483a84a5f25031a21865!400x400.jpeg" />
+			<img src="https://img2.woyaogexing.com/2019/01/03/8da0f960b67d483a84a5f25031a21865!400x400.jpeg" alt=""> </td>  
+			</tr><tr><td></br><p class="new_type">个性签名:</p></td></tr><tr><td colspan="5">
+			<textarea name="introduction" placeholder="说点什么..." rows=15 cols=90></textarea>
+			<input type="hidden" name="userId" value="<%= current_user.id %>"></td></tr>
+			<tr><td><input type="submit" value="提交修改"></td></tr></table>
+			</form>
+
+  </div>
+  
+  <div class="sidebar">
+    <div class="about">
+      <%if current_user.pic==nil %>
+        <p class="avatar"> <img src='<%= asset_path 'avatar.jpg' %>' alt=""> </p>
+      <%else%>
+      <p class="avatar"> <img src='<%=current_user.pic%>' alt=""> </p>
+      <%end%>
+      <p class="abname"><%= current_user.email %></p>
+      <!--<p class="abposition">Web前端设计师、网页设计</p>-->
+
+      <!--显示关注情况-->
+      <%if current_user.follownum==nil  %>
+      <p class="abname">关注数：0</p>
+      <%else%>
+      <p class="abname">关注数：<%=current_user.follownum%></p>
+      <%end%>
+      <%if current_user.fannum==nil  %>      
+      <p class="abname">粉丝数：0</p>
+      <%else%>      
+      <p class="abname">粉丝数：<%=current_user.fannum%></p>
+      <%end%>
+			</br>
+			<p class="abname">个性签名</p>
+			<%if current_user.information==nil or current_user.information==""%>
+			    <p class="ab_name_t">	这个人很懒，什么都没有留下。</p>
+			<%else
+				clists = current_user.information.split("\n")
+			  clists.each do |ctext|
+			%>
+					<p class="ab_name_t">	<%= ctext %> </p>
+			  <%end%>
+			<%end%>
+
+    </div>
+    <div class="weixin">
+      <h2 class="hometitle">推荐用户</h2>
+      <ul>
+        <% userlists = User.all.order(fannum: :desc)  %>
+        <% if userlists.count==1 and userlists[0].id==current_user.id%>
+        <p>您近期活动太少了，很难推荐哦</p>
+        <% else %>
+          <% userlists=userlists.page(params[:page]).per(5) %>
+          <% userlists.each do |u| %>
+          <% if u.id==current_user.id then next end %>
+            <a href='/test_views/aboutother?userId=<%=u.id%>'><%=u.email%></a><br/>
+          <% end  %>
+          <%= paginate userlists %>
+        <% end  %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!--
+<footer>
+  <p>Design by <a href="http://www.yangqq.com" target="_blank">杨青个人博客</a> <a href="/">蜀ICP备11002373号-1</a></p>
+</footer>
+<a href="#" class="cd-top">Top</a>
+-->

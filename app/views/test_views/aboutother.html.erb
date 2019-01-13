@@ -29,11 +29,15 @@
   </div>
   <div class="sidebar">
     <div class="about">
-      <!--显示头像-->
-      <p class="avatar"> <img src='<%= asset_path 'avatar.jpg' %>' alt=""> </p>
-      
       <!--获取用户对象 -->
       <% user=User.find(params[:userId]) %>
+      <!--显示头像-->
+      <%if user.pic==nil %>
+        <p class="avatar"> <img src='<%= asset_path 'avatar.jpg' %>' alt=""> </p>
+      <%else%>
+      <p class="avatar"> <img src='<%=user.pic%>' alt=""> </p>
+      <%end%>
+      
       <!--显示用户邮箱-->
       <p class="abname"><%= User.find(params[:userId]).email %></p>
       <!--<p class="abposition">Web前端设计师、网页设计</p>-->
@@ -49,7 +53,17 @@
       <%else%>
       <p class="abname">粉丝数：<%=user.fannum%></p>
       <%end%>
-      
+      <p class="abname">个性签名</p>
+			<%if user.information==nil or user.information==""%>
+			    <p class="ab_name_t">	这个人很懒，什么都没有留下。</p>
+			<%else
+				clists = user.information.split("\n")
+			  clists.each do |ctext|
+			%>
+					<p class="ab_name_t">	<%= ctext %> </p>
+			  <%end%>
+			<%end%>
+     
       <!--登录了，才显示“关注”/“取消关注”按钮-->
       <% if user_signed_in? %>
       
@@ -63,7 +77,7 @@
            <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
           <input type='hidden' name='meUserId' value='<%=current_user.id%>'/>
           <input type='hidden' name='otherUserId' value='<%=params[:userId]%>'/>
-          <input type="submit" value="关注"/>
+          <input type="submit" value="关注" />
           </form>
         <% else %>
           <form action="/test_views/unfollowfunc" method="post">

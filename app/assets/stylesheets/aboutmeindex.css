@@ -246,3 +246,5 @@ h1.t_nav { border-bottom: #bfbfbf 1px solid; font-size: 14px; font-weight: norma
 .shang_payselect { text-align: center; margin: 0 auto; margin-top: 40px; cursor: pointer; height: 60px; width: 280px; }
 .shang_payselect .pay_item { display: inline-block; margin-right: 10px; float: left; }
 .shang_payselect img { float: left }
+.ab_name_t{ color: #3f3f3f;  font-size: 14px; margin-bottom: 10px; text-align: left }
+.new_type{color: #3f3f3f; font-weight: bold; font-size: 18px; margin-bottom: 10px; text-align: left }

@@ -22,15 +22,18 @@
     <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
     <%= link_to('修改密碼', edit_registration_path(:user)) %>
     <% else %>
-    <%= link_to('註冊', new_registration_path(:user)) %> |
-    <%= link_to('登入', new_session_path(:user)) %>
+    </br>
+    <table width=200 height=50  border="20" frame="void" style="background-color:white" align="center">
+      <tr>
+      <td><h3><%= link_to('注册', new_registration_path(:user)) %></h3></td>
+    <td><h3><%= link_to('登录', new_session_path(:user)) %></h3></td></tr>
+    </table>
     <% end %>
-    
     <!-- 显示flash信息 -->
-    <p class="notice"><%= notice %></p>
+
     <p class="alert"><%= alert %></p>
-    
-    <%= yield %>
+
+  <%= yield %>
    </div>
 
   </body>
