@@ -11,6 +11,7 @@ H = Hash["动作冒险" => 1, "动作" => 2,"冒险" => 3, "射击" => 4, "角�
 C = Hash["动作冒险" => 0, "动作" => 0,"冒险" => 0, "射击" => 0, "角色扮演" =>0, "格斗" => 0, "模拟" => 0, "策略" => 0]
 S = Hash["动作冒险" => 0, "动作" => 0,"冒险" => 0, "射击" => 0, "角色扮演" =>0, "格斗" => 0, "模拟" => 0, "策略" => 0]
 gamecount = 1
+
 #game
 CSV.foreach('/home/ubuntu/workspace/film-project/db/gamelist.csv',headers:true) do |row| 
     Game.create(name:row[0],detail:row[4],score:row[2],pic:row[3])
@@ -18,9 +19,11 @@ CSV.foreach('/home/ubuntu/workspace/film-project/db/gamelist.csv',headers:true) 
     for tg in alltag
         C[tg]+=1
         S[tg]+=row[2].to_f/2
+
     end
     gamecount+=1
 end
+
 
 
 Tag.create(name:"动作冒险",score:(S["动作冒险"]/C["动作冒险"]).round(1),pic:"app/assets/images/tag1.png")
@@ -40,3 +43,4 @@ CSV.foreach('/home/ubuntu/workspace/film-project/db/gamelist.csv',headers:true) 
     end
     gamecount+=1
 end
+
