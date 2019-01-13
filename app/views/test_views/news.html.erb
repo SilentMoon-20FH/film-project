@@ -3,7 +3,7 @@
 	
 	<!--修改了下面的第一个-->
 	
-	<% gamelists = Game.all %>
+	<% gamelists = Game.all.order(score: :desc) %>
 	<% if gamelists.empty? %>
 		<h1>还没有游戏哦</h1>
 	<% else %>
@@ -12,7 +12,7 @@
 		<% gamelists.each do |game| %>
 		<div class="blog1-w3ls">
 			<div class="col-md-4 blog-image-w3l">
-				<a href='/test_views/single?gameId=<%=game.id%>'><img src='<%= asset_path 'ng1.jpg' %>' alt=" " /></a>
+				<a href='/test_views/single?gameId=<%=game.id%>'><img src='<%=game.pic%>' width="100px" height="255px" alt=" " /></a>
 			</div>
 			<div class="col-md-8 blog-text-w3ls">
 				<a href='/test_views/single?gameId=<%=game.id%>'><h4><%=game.name%></h4></a>
@@ -28,7 +28,7 @@
 				 <!--<a href='/test_views/single' class="blog-read" >Read More</a>-->
 			</div>
 			<div class="clearfix"></div>
-		</div>
+		</div></br>
 		<% end %>
 		<%= paginate gamelists %>
 		

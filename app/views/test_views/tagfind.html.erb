@@ -8,11 +8,12 @@
 	<% if gamelists.empty? %>
 		<h1>没有找到相关游戏哦</h1>
 	<% else %>
-		
-		<% gamelists.order(score).reverse.each do |game| %>
+		<% gamelists=gamelists.page(params[:page]).per(5) %>
+		<% gamelists.each do |rgame| %>
+		<% game=Game.find(rgame.game_id)%>
 		<div class="blog1-w3ls">
 			<div class="col-md-4 blog-image-w3l">
-				<a href='/test_views/single?gameId=<%=game.id%>'><img src='<%=game.pic%>' width="100px" height="255px" alt=" " /></a>
+				<a href='/test_views/single?gameId=<%=game.id%>'><img src='<%=game.pic%>' width="100px" height="255px" alt=" " /></a></a>
 			</div>
 			<div class="col-md-8 blog-text-w3ls">
 				<a href='/test_views/single?gameId=<%=game.id%>'><h4><%=game.name%></h4></a>
