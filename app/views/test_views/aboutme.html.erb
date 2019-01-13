@@ -1,4 +1,4 @@
-
+<meta name="referrer" content="no-referrer">
 <div class="container">
   <h1 class="t_nav">
     <span>与世界分享你的视界</span>
@@ -17,13 +17,15 @@
         <% comm = comm.page(params[:page]).per(5)  %>
         <%  comm.each do |c|  %>
         <li>
-          评论内容：<%=c.content%>
+          游戏名：<a href='/test_views/single?gameId=<%=c.game_id%>'><%=Game.find(c.game_id).name%></a>
           <br/>
           评分：<%=c.score%>分
           <br/>
           评论日期：<%= c.created_at.year%>.<%= c.created_at.month%>.<%= c.created_at.day%>.<%= c.created_at.hour%>:<%= c.created_at.min%>
           <br/>
-          游戏名：<a href='/test_views/single?gameId=<%=c.game_id%>'><%=Game.find(c.game_id).name%></a>
+          评论内容：
+          </br>
+          <textarea name="comment"  required="" rows="4" cols="40" disabled="disabled" style="resize:none;"><%=c.content%></textarea>
           <br/>
           <a href='/test_views/deletecomment?id=<%=c.id%>' onclick="return confirmd()"><font color="#FF0000">删除评论</font></a>
         </li>
@@ -56,13 +58,9 @@
 			<br>
 			<p class="abname">个性签名</p>
 			<%if current_user.information==nil or current_user.information==""%>
-			    <p class="ab_name_t">	这个人很懒，什么都没有留下。</p>
-			<%else
-				clists = current_user.information.split("\n")
-			  clists.each do |ctext|
-			%>
-					<p class="ab_name_t">	<%= ctext %> </p>
-			  <%end%>
+			    <textarea name="comment"  required="" rows="4" cols="40" disabled="disabled" style="resize:none;">这个人很懒，什么都没有留下。</textarea>
+			<%else%>
+					<textarea name="comment"  required="" rows="4" cols="40" disabled="disabled" style="resize:none;"><%=current_user.information%></textarea>
 			<%end%>
 
     </div>

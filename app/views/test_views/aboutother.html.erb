@@ -1,4 +1,4 @@
-
+<meta name="referrer" content="no-referrer">
 <div class="container">
   <h1 class="t_nav">
     <span>与世界分享你的视界</span>
@@ -55,15 +55,10 @@
       <%end%>
       <p class="abname">个性签名</p>
 			<%if user.information==nil or user.information==""%>
-			    <p class="ab_name_t">	这个人很懒，什么都没有留下。</p>
-			<%else
-				clists = user.information.split("\n")
-			  clists.each do |ctext|
-			%>
-					<p class="ab_name_t">	<%= ctext %> </p>
-			  <%end%>
+			    <textarea name="comment"  required="" rows="4" cols="40" disabled="disabled" style="resize:none;">这个人很懒，什么都没有留下。</textarea>
+			<%else%>
+					<textarea name="comment"  required="" rows="4" cols="40" disabled="disabled" style="resize:none;"><%=user.information%></textarea>
 			<%end%>
-     
       <!--登录了，才显示“关注”/“取消关注”按钮-->
       <% if user_signed_in? %>
       

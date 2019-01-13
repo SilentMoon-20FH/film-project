@@ -1,4 +1,4 @@
-
+<meta name="referrer" content="no-referrer">
 <div class="container">
   <h1 class="t_nav">
     <span>与世界分享你的视界</span>
@@ -19,9 +19,23 @@
         <%  fs.each do |f|  %>
         <li>
           <% u=User.find(f.followed_id)  %>
-          <a href='/test_views/aboutother?userId=<%=u.id%>'>
-            <%=u.email%>
-          </a>
+          
+          <table><tr><td>
+          <%if u.pic==nil %>
+            <p class="avatar"> <img src='<%= asset_path 'avatar.jpg' %>' alt=""> </p>
+          <%else%>
+            <p class="avatar"> <img src='<%=u.pic%>' alt=""> </p>
+          <%end%>
+          </td><td>
+          <a href='/test_views/aboutother?userId=<%=u.id%>'><%=u.email%></a></br>
+      <%if u.information==nil or u.information==""%>
+			    <textarea name="comment"  required="" rows="4" cols="40" disabled="disabled" style="resize:none;">这个人很懒，什么都没有留下。</textarea>
+			<%else%>
+					<textarea name="comment"  required="" rows="4" cols="40" disabled="disabled" style="resize:none;"><%=u.information%></textarea>
+			<%end%>
+
+          </td>
+          </tr></table>
           <br/>
         </li>
         <% end %>
@@ -53,13 +67,9 @@
 			<br>
 			<p class="abname">个性签名</p>
 			<%if current_user.information==nil or current_user.information==""%>
-			    <p class="ab_name_t">	这个人很懒，什么都没有留下。</p>
-			<%else
-				clists = current_user.information.split("\n")
-			  clists.each do |ctext|
-			%>
-					<p class="ab_name_t">	<%= ctext %> </p>
-			  <%end%>
+			    <textarea name="comment"  required="" rows="4" cols="40" disabled="disabled" style="resize:none;">这个人很懒，什么都没有留下。</textarea>
+			<%else%>
+					<textarea name="comment"  required="" rows="4" cols="40" disabled="disabled" style="resize:none;"><%=current_user.information%></textarea>
 			<%end%>
 
     </div>

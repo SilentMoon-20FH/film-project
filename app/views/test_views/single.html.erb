@@ -18,12 +18,14 @@
 	-->
 <!-- //breadcrumbs -->
 <!-- single -->
+<meta name="referrer" content="no-referrer">
+
 	<div class="blog">
 		<div class="container">
 			<div class="col-md-7 wthree_blog_left">
 				<div class="wthree_blog_left_grid">
 					<div class="wthree_blog_left_grid_slider">
-						<img src='<%=@game.pic%>' alt=" " class="img-responsive" />
+						<img src='<%=@game.pic%>' alt=" " class="img-responsive" height="400"/>
 					</div>
 					<h4>
 						<% @tagLists.each do |taglist| %>
@@ -59,21 +61,21 @@
 						<ul>
 							<%	@commentLists.each do |c| %>
 							<li>
+								<table><tr><td valign="top">
+									<%if User.find(c.user_id).pic==nil %><p class="new_avatar"> <img src='<%= asset_path 'avatar.jpg' %>'  alt=""> </p>
+      								<%else%><p class="new_avator"> <img src='<%=User.find(c.user_id).pic%>' alt="" > </p>
+      								<%end%></td><td>
 								<a href='/test_views/aboutother?userId=<%=c.user_id%>'><%= User.find(c.user_id).email %></a> ||
 								<%= c.created_at.year%>.<%= c.created_at.month%>.<%= c.created_at.day%>.
 								<%= c.created_at.hour%>:<%= c.created_at.min%> ||
 								<%= if c.score==nil then 3 else c.score end %>分
-								<br>
-								<% 
-									clists = c.content.split("\n")
-									clists.each do |ctext|
-								%>
-										<p>	<%= ctext %> </p>
-								<%end%>
-
+								</br>
 								
-							</li>
+								<textarea name="comment"  required="" rows="4" cols="40" disabled="disabled" style="resize:none;"><%=c.content%></textarea>
+								
+							</td></tr></table></li>
 							<% end %>
+
 						</ul>
 						<%= paginate @commentLists %>
 					<% end %>
@@ -108,7 +110,7 @@
 					
 					<div class="agileits_reply">
 						<h3>您还没有登录，不能评论哟</h3>
-						<h3><a href='/users/sign_in'>去登陆</a></h3>
+						<h3><a href='/users/sign_in'>去登录</a></h3>
 						<!-- <img src='<%= asset_path 'c2.jpg' %>' alt=" " class="img-responsive"/> -->
 					</div>
 				
@@ -126,16 +128,19 @@
 				</div>
 				<div class="w3l_categories">
 					<h3>推荐游戏</h3>
-					<a href='/test_views/single?gameId=<%=@gameIdList[0]%>'><img src='<%=Game.find(@gameIdList[0]).pic%>'  alt=" " class="img-responsive" /></a><br/>
-					<a href='/test_views/single?gameId=<%=@gameIdList[1]%>'><img src='<%=Game.find(@gameIdList[1]).pic%>'  alt=" " class="img-responsive" /></a><br/>
-					<a href='/test_views/single?gameId=<%=@gameIdList[2]%>'><img src='<%=Game.find(@gameIdList[2]).pic%>'  alt=" " class="img-responsive" /></a><br/>
-					<a href='/test_views/single?gameId=<%=@gameIdList[3]%>'><img src='<%=Game.find(@gameIdList[3]).pic%>'  alt=" " class="img-responsive" /></a><br/>
-					<a href='/test_views/single?gameId=<%=@gameIdList[4]%>'><img src='<%=Game.find(@gameIdList[4]).pic%>'  alt=" " class="img-responsive" /></a><br/>
-					<a href='/test_views/single?gameId=<%=@gameIdList[5]%>'><img src='<%=Game.find(@gameIdList[5]).pic%>'  alt=" " class="img-responsive" /></a><br/>
-					<div class="clearfix"> </div>
-				</div>
-			</div>
-			<div class="clearfix"> </div>
+				</div></div>
+			
+					<table>
+					<tr>
+						<td><a href='/test_views/single?gameId=<%=@gameIdList[0]%>'><img src="<%=Game.find(@gameIdList[0]).pic%>" width="220" height="300" alt=" "/></a></td>
+						<td><a href='/test_views/single?gameId=<%=@gameIdList[1]%>'><img src='<%=Game.find(@gameIdList[1]).pic%>' width="220" height="300" alt=" "/></a></td></tr>
+					<tr><td><a href='/test_views/single?gameId=<%=@gameIdList[2]%>'><img src='<%=Game.find(@gameIdList[2]).pic%>' width="220" height="300" alt=" "/></a><br/></td>
+						<td><a href='/test_views/single?gameId=<%=@gameIdList[3]%>'><img src='<%=Game.find(@gameIdList[3]).pic%>' width="220" height="300" alt=" "/></a><br/></td></tr>
+					<tr><td><a href='/test_views/single?gameId=<%=@gameIdList[4]%>'><img src='<%=Game.find(@gameIdList[4]).pic%>' width="220" height="300" alt=" "/></a><br/></td>
+						<td><a href='/test_views/single?gameId=<%=@gameIdList[5]%>'><img src='<%=Game.find(@gameIdList[5]).pic%>' width="220" height="300" alt=" "/></a><br/></td>
+					</tr></table>
 		</div>
 	</div>
+
+
 <!-- //single -->	
