@@ -874,6 +874,16 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 
 
 /*-- team --*/
+.new_team_type h4{
+	font-size:1.6em;
+	color:#E91E63;
+	margin:1em 0 .5em;
+}
+.new_team_type p{
+	color:#999;
+	text-align:center;
+}
+
 .team-w3layouts {
     background: #e8e8e8;
 }
