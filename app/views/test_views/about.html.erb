@@ -53,7 +53,7 @@
 	<div class="container">
 		<h3>热门标签</h3>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%=@pic_list[0]%>' height="255px" width="255px"  alt=" " />
+			<img src='<%= asset_path @tagIdList[0].pic %>' height="255px" width="255px"  alt=" " />
 			<div class="mask">
 				<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[0].id%>'><h4>点击这里</h4>
 				<p>以了解</p>
@@ -61,7 +61,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%=@pic_list[1]%>' height="255px" width="255px"   alt=" " />
+			<img src='<%= asset_path @tagIdList[1].pic %>' height="255px" width="255px"  alt=" " />
 			<div class="mask">
 				<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[1].id%>'><h4>点击这里</h4>
 				<p>以了解</p>
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%=@pic_list[2]%>' height="255px" width="255px"  alt=" " />
+			<img src='<%= asset_path @tagIdList[2].pic %>' height="255px" width="255px"  alt=" " />
 			<div class="mask">
 				<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[2].id%>'><h4>点击这里</h4>
 				<p>以了解</p>
@@ -77,7 +77,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%=@pic_list[3]%>' height="255px" width="255px"  alt=" " />
+			<img src='<%= asset_path @tagIdList[3].pic %>' height="255px" width="255px"  alt=" " />
 			<div class="mask">
 				<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[3].id%>'><h4>点击这里</h4>
 				<p>以了解</p>
@@ -85,7 +85,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%=@pic_list[4]%>' height="255px" width="255px"  alt=" " />
+			<img src='<%= asset_path @tagIdList[4].pic %>' height="255px" width="255px"  alt=" " />
 			<div class="mask">
 				<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[4].id%>'><h4>点击这里</h4>
 				<p>以了解</p>
@@ -93,7 +93,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%=@pic_list[5]%>' height="255px" width="255px"   alt=" " />
+			<img src='<%= asset_path @tagIdList[5].pic %>' height="255px" width="255px"  alt=" " />
 			<div class="mask">
 				<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[5].id%>'><h4>点击这里</h4>
 				<p>以了解</p>
@@ -101,7 +101,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%=@pic_list[6]%>' height="255px" width="255px"  alt=" " />
+			<img src='<%= asset_path @tagIdList[6].pic %>' height="255px" width="255px"  alt=" " />
 			<div class="mask">
 				<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[6].id%>'><h4>点击这里</h4>
 				<p>以了解</p>
@@ -109,7 +109,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%=@pic_list[7]%>' height="255px" width="255px"  alt=" " />
+			<img src='<%= asset_path @tagIdList[7].pic %>' height="255px" width="255px"  alt=" " />
 			<div class="mask">
 				<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[7].id%>'><h4>点击这里</h4>
 				<p>以了解</p>
@@ -127,70 +127,70 @@
 				<tr>
 					<td>
 					<div class="view view-second">
-						<img src='<%= asset_path 't1.jpg' %>' alt=" " width="200">
+						<img src='<%= asset_path 'team1.jpg' %>' alt=" " width="200">
 						<div class="mask"></div>
 						<div class="content">
-							<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+							<p>你我一见如故，定当结为好友，义结金兰，邀为同道，二号位有请。</p>
 						</div>
 					</div>
 					<div class="new_team_type">
-					<h4>Mariya Thomas</h4>
+					<h4>Key</h4>
 					<p>Games Designer</p>
 					</div>
 					</td>
 					
 					<td>
 					<div class="view view-second">
-						<img src='<%= asset_path 't1.jpg' %>' alt=" " width="200">
+						<img src='<%= asset_path 'team2.jpg' %>' alt=" " width="200">
 						<div class="mask"></div>
 						<div class="content">
-							<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+							<p>面倒くさい</p>
 						</div>
 					</div>
 					<div class="new_team_type">
-					<h4>Mariya Thomas</h4>
+					<h4>谧月</h4>
 					<p>Games Designer</p>
 					</div>
 					</td>
 					
 					<td>
 					<div class="view view-second">
-						<img src='<%= asset_path 't1.jpg' %>' alt=" " width="200">
+						<img src='<%= asset_path 'team3.jpg' %>' alt=" " width="200">
 						<div class="mask"></div>
 						<div class="content">
-							<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+							<p>朝闻道，夕死可矣。</p>
 						</div>
 					</div>
 					<div class="new_team_type">
-					<h4>Mariya Thomas</h4>
+					<h4>愚者</h4>
 					<p>Games Designer</p>
 					</div>
 					</td>
 					
 					<td>
 					<div class="view view-second">
-						<img src='<%= asset_path 't1.jpg' %>' alt=" " width="200">
+						<img src='<%= asset_path 'team4.jpg' %>' alt=" " width="200">
 						<div class="mask"></div>
 						<div class="content">
-							<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+							<p>西北山高水又长，男儿岂能老故乡。黄河后浪推前浪，跳上浪头干一场。</p>
 						</div>
 					</div>
 					<div class="new_team_type">
-					<h4>Mariya Thomas</h4>
+					<h4>冬季暖洋洋</h4>
 					<p>Games Designer</p>
 					</div>
 					</td>
 					
 					<td>
 					<div class="view view-second">
-						<img src='<%= asset_path 't1.jpg' %>' alt=" " width="200">
+						<img src='<%= asset_path 'team5.jpg' %>' alt=" " width="200">
 						<div class="mask"></div>
 						<div class="content">
-							<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+							<p>&#8195 &#8195 22已经在做了，你哥哥我骗过你吗？</p>
 						</div>
 					</div>
 					<div class="new_team_type">
-					<h4>Mariya Thomas</h4>
+					<h4>right now</h4>
 					<p>Games Designer</p>
 					</div>
 					</td>

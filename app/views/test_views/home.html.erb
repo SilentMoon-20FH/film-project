@@ -12,7 +12,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<!--<a href='/test_views/home'><h1>Games <img src='<%='app/assets/images/c1.png' %>' alt=" " /> Zone</h1></a>-->
+					<!--<a href='/test_views/home'><h1>Games <img src='<%= asset_path 'c1.png' %>' alt=" " /> Zone</h1></a>-->
 				</div>
 
 				<div id="navbar" class="navbar-collapse collapse">
@@ -93,7 +93,7 @@
 						
 						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[0]%>'>
 							<h4><%=Tag.find(@tagIdList[0]).name%></h4>
-							<img src='<%=Tag.find(@tagIdList[0]).pic%>' alt=" " class="img-responsive" /></a>
+							<img src='<%= asset_path Tag.find(@tagIdList[0]).pic %>' alt=" " height="360" width="250" /></a>
 					</div>
 					</td>
 				<!--</li>-->
@@ -103,7 +103,7 @@
 						
 						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[1]%>'>
 							<h4><%=Tag.find(@tagIdList[1]).name%></h4>
-							<img src= '<%=Tag.find(@tagIdList[1]).name%>' alt=" " class="img-responsive" /></a>
+							<img src= '<%= asset_path Tag.find(@tagIdList[1]).pic %>' alt=" " height="360" width="250" /></a>
 					</div>
 					</td>
 				<!--</li>-->
@@ -113,7 +113,7 @@
 						
 						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[2]%>'>
 							<h4><%=Tag.find(@tagIdList[2]).name%></h4>
-							<img src='<%=Tag.find(@tagIdList[2]).name%>' alt=" " class="img-responsive" /></a>
+							<img src='<%= asset_path Tag.find(@tagIdList[2]).pic %>' alt=" " height="360" width="250" /></a>
 					</div>
 					</td>
 				<!--</li>-->
@@ -123,7 +123,7 @@
 						
 						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[3]%>'>
 							<h4><%=Tag.find(@tagIdList[3]).name%></h4>
-							<img src='<%=Tag.find(@tagIdList[3]).name%>' alt=" " class="img-responsive" /></a>
+							<img src='<%= asset_path Tag.find(@tagIdList[3]).pic %>' alt=" " height="360" width="250" /></a>
 					</div>
 					</td>
 				</table>
