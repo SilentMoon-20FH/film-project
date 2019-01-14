@@ -13,7 +13,7 @@ S = Hash["动作冒险" => 0, "动作" => 0,"冒险" => 0, "射击" => 0, "角�
 gamecount = 1
 
 #game
-CSV.foreach('/home/ubuntu/workspace/film-project/db/gamelist.csv',headers:true) do |row| 
+CSV.foreach('/app/db/gamelist.csv',headers:true) do |row| 
     Game.create(name:row[0],detail:row[4],score:row[2],pic:row[3])
     alltag = row[1].split(", ")
     for tg in alltag
@@ -36,7 +36,7 @@ Tag.create(name:"模拟",score:(S["模拟"]/C["模拟"]).round(1),pic:"tag7.jpg"
 Tag.create(name:"策略",score:(S["策略"]/C["策略"]).round(1),pic:"tag8.jpg")
 
 gamecount=1
-CSV.foreach('/home/ubuntu/workspace/film-project/db/gamelist.csv',headers:true) do |row| 
+CSV.foreach('/app/db/gamelist.csv',headers:true) do |row| 
     alltag = row[1].split(", ")
     for tg in alltag
         Rgametag.create(game_id:gamecount,tag_id:H[tg])

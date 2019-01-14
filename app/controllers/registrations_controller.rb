@@ -1,7 +1,7 @@
 
 #这个文件是之前尝试自定义user_controller的，现在无效
 
-class DeviseCustomed::RegistrationsController < Devise::RegistrationsController
+class RegistrationsController < Devise::RegistrationsController
   def new
     super
   end
