@@ -10,10 +10,11 @@ require 'csv'
 H = Hash["动作冒险" => 1, "动作" => 2,"冒险" => 3, "射击" => 4, "角色扮演" =>5, "格斗" => 6, "模拟" => 7, "策略" => 8]
 C = Hash["动作冒险" => 0, "动作" => 0,"冒险" => 0, "射击" => 0, "角色扮演" =>0, "格斗" => 0, "模拟" => 0, "策略" => 0]
 S = Hash["动作冒险" => 0, "动作" => 0,"冒险" => 0, "射击" => 0, "角色扮演" =>0, "格斗" => 0, "模拟" => 0, "策略" => 0]
-gamecount = 1
 
-#game
-CSV.foreach('/app/db/gamelist.csv',headers:true) do |row| 
+gamecount = 1
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'gamelist.csv'))
+csv = CSV.parse(csv_text, :headers => true)
+csv.each do |row|
     Game.create(name:row[0],detail:row[4],score:row[2],pic:row[3])
     alltag = row[1].split(", ")
     for tg in alltag
@@ -23,6 +24,8 @@ CSV.foreach('/app/db/gamelist.csv',headers:true) do |row|
     end
     gamecount+=1
 end
+#game
+
 
 
 
@@ -36,7 +39,8 @@ Tag.create(name:"模拟",score:(S["模拟"]/C["模拟"]).round(1),pic:"tag7.jpg"
 Tag.create(name:"策略",score:(S["策略"]/C["策略"]).round(1),pic:"tag8.jpg")
 
 gamecount=1
-CSV.foreach('/app/db/gamelist.csv',headers:true) do |row| 
+
+csv.each do |row|
     alltag = row[1].split(", ")
     for tg in alltag
         Rgametag.create(game_id:gamecount,tag_id:H[tg])
