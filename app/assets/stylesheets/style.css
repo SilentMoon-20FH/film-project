@@ -571,6 +571,7 @@ p.agileinfo{
 	.sub-banner{
 		background: url(/assets/banner3.jpg) no-repeat 0px 0px;
 		min-height:87px;
+		background-size: 100%;
 	}
 /*-- //sub-banner--*/
 /*-- about--*/
