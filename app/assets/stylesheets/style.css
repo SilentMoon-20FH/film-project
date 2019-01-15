@@ -1562,7 +1562,7 @@ color:rgb(2, 24, 136) !important;
     background: url(/assets/img-sp.png) no-repeat 0px -183px;
     padding-left: 2.5em;
     list-style-type: none;
-    text-transform: capitalize;
+    text-transform: none;
     font-family: 'Poppins', sans-serif;
 	text-align:left;
     color: #999;

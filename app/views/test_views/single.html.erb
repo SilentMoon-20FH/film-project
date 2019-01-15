@@ -65,7 +65,11 @@
 									<%if User.find(c.user_id).pic==nil %><p class="new_avatar"> <img src='<%= asset_path 'avatar.jpg' %>'  alt=""> </p>
       								<%else%><p class="new_avator"> <img src='<%=User.find(c.user_id).pic%>' alt="" > </p>
       								<%end%></td><td>
-								<a href='/test_views/aboutother?userId=<%=c.user_id%>'><%= User.find(c.user_id).email %></a> ||
+      							<%if c.user_id==current_user.id %>
+      								<a href='/test_views/aboutme'><%= current_user.email %></a> ||
+      							<%else%>
+									<a href='/test_views/aboutother?userId=<%=c.user_id%>'><%= User.find(c.user_id).email %></a> ||
+								<%end%>
 								<%= c.created_at.year%>.<%= c.created_at.month%>.<%= c.created_at.day%>.
 								<%= c.created_at.hour%>:<%= c.created_at.min%> ||
 								<%= if c.score==nil then 3 else c.score end %>分
