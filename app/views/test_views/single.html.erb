@@ -62,9 +62,10 @@
 							<%	@commentLists.each do |c| %>
 							<li>
 								<table><tr><td valign="top">
-									<%if User.find(c.user_id).pic==nil %><p class="new_avatar"> <img src='<%= asset_path 'avatar.jpg' %>'  alt=""> </p>
-      								<%else%><p class="new_avator"> <img src='<%=User.find(c.user_id).pic%>' alt="" > </p>
-      								<%end%></td><td>
+									<div class="new_avator">
+									<%if User.find(c.user_id).pic==nil %> <img src='https://img2.woyaogexing.com/2019/01/09/7d9bdd0d734c4519a6959978735ffc0a!400x400.jpeg'  alt=""> 
+      								<%else%><img src='<%=User.find(c.user_id).pic%>' alt="" > 
+      								<%end%></div></td><td>
       							<%if c.user_id==current_user.id %>
       								<a href='/test_views/aboutme'><%= current_user.email %></a> ||
       							<%else%>

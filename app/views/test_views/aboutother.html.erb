@@ -35,7 +35,7 @@
       <% user=User.find(params[:userId]) %>
       <!--显示头像-->
       <%if user.pic==nil %>
-        <p class="avatar"> <img src='<%= asset_path 'avatar.jpg' %>' alt=""> </p>
+        <p class="avatar"> <img src='https://img2.woyaogexing.com/2019/01/09/7d9bdd0d734c4519a6959978735ffc0a!400x400.jpeg' alt=""> </p>
       <%else%>
       <p class="avatar"> <img src='<%=user.pic%>' alt=""> </p>
       <%end%>
