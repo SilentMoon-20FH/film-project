@@ -1,1 +1,1 @@
-Rails.application.config.session_store :cookie_store, key: 'make_up_a_new_name_here'
+Rails.application.config.session_store :cookie_store, key: "_rails_session_#{Rails.env}"
