@@ -7,23 +7,23 @@
 			  background-size: 100%;
         }
 				</style>
-				<table height=400 width=400 frame="void" style="background-color:white" align="center"><tr><td>
+				<table height=400 width=400 frame="void" style="background-color:white" align="center"><tr><td colspan=2>
 				<h1><div class="login">欢迎回来</div></h1></td></tr></br></br>
 				
-				<tr><td><div class="username-field">
+				<tr><td colspan=2><div class="username-field">
 				  <h4>邮箱: <%= f.email_field :email, autocomplete: "email" %></h4>
 				</div></td></tr>
-				<tr><td><div class="password-field">
+				<tr><td colspan=2><div class="password-field">
 					<h4>密码: <%= f.password_field :password, autocomplete: "current-password" %></h4>
 				</div></td></tr>
 				</br>
 			<div class="actions" >
-			  <tr><td><h4><%= f.submit "登录" %></h4></td></tr>
+			  <tr><td><h4><a href='/test_views/home'>返回主页</a></td><td><%= f.submit "登录" %></h4></td></tr>
 			</div>
     <% end %>
 </div>
 
-		</br><tr><td>
+		</br><tr><td colspan=2>
         <h2>与世界分享你的视界</h2></td></tr>
 
 
