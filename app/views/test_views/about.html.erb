@@ -1,5 +1,6 @@
 <!-- Collection -->
 <meta name="referrer" content="no-referrer">
+
 	<div class="collection-agileits">
 			<div class="collection-grids-agileits-w3layouts">
 				<div class="col-md-4 col-sm-4 collection-left">
@@ -8,7 +9,7 @@
 				<div class="col-md-8 col-sm-8 collection-right">
 					<div class="col-md-4 col-sm-4 collection-grid collection-text collection-grid-1">
 						<img src='<%= asset_path 'c1.png' %>' alt="">
-						<h3><a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[0].id%>'><%=@tagIdList[0].name%> </h3>
+						<h3><a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[0].id%>'><font color="white"><%=@tagIdList[0].name%></font> </h3>
 						<% @game_name_array[0].each do |game_name| %>
 							<a href='/test_views/single?gameId=<%=game_name%>'>
 								<p><%=Game.find(game_name).name%></p></a>
@@ -20,7 +21,7 @@
 					</div>
 					<div class="col-md-4 col-sm-4 collection-grid collection-text collection-grid-3">
 						<img src='<%= asset_path 'c2.png' %>' alt="" />
-						<h3><a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[1].id%>'><%=@tagIdList[1].name%></h3>
+						<h3><a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[1].id%>'><font color="white"><%=@tagIdList[1].name%></font></h3>
 						<% @game_name_array[1].each do |game_name| %>
 							<a href='/test_views/single?gameId=<%=game_name%>'>
 								<p><%=Game.find(game_name).name%></p></a>
@@ -31,7 +32,7 @@
 					</div>
 					<div class="col-md-4 col-sm-4 collection-grid collection-text collection-grid-5">
 						<img src='<%= asset_path 'c3.png' %>' alt="" />
-						<h3><a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[2].id%>'><%=@tagIdList[2].name%></h3>
+						<h3><a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[2].id%>'><font color="white"><%=@tagIdList[2].name%></font></h3>
 						<% @game_name_array[2].each do |game_name| %>
 							<a href='/test_views/single?gameId=<%=game_name%>'>
 								<p><%=Game.find(game_name).name%></p></a>
