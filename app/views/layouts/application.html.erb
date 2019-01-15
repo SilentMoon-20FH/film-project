@@ -9,7 +9,7 @@
 	  
 	  
     <%= csrf_meta_tags %>
-
+    <meta name="referrer" content="no-referrer">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -19,22 +19,23 @@
     <div align="center">
     
     <% if current_user %>
-    <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
+    <%= link_to('登出', destroy_user_session_path, :method => :delete) %>|
     <%= link_to('修改密碼', edit_registration_path(:user)) %>
     <% else %>
     </br>
     <table width=200 height=50  border="20" frame="void" style="background-color:white" align="center">
       <tr>
-      <td><h3><%= link_to('注册', new_registration_path(:user)) %></h3></td>
+      <td><h3><%= link_to('注册', new_registration_path(:user)) %></h3> </td>
     <td><h3><%= link_to('登录', new_session_path(:user)) %></h3></td></tr>
     </table>
     <% end %>
     <!-- 显示flash信息 -->
 
-    <p class="alert"><%= alert %></p>
+    <font size="6" color="red"></br><%= alert %></font>
+    <%= yield %>
 
-  <%= yield %>
-   </div>
+  
+
 
   </body>
 </html>

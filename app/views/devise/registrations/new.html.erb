@@ -7,27 +7,27 @@
 				  background-size: 100%;
 
         }
-				</style>
-				<table height=400 width=400 frame="void" style="background-color:white" align="center"><tr><td>
+				</style >
+				<table height=480 width=400 frame="void" style="background-color:white"><tr><td colspan=2  align="center">
 				<h1>瞧你发现了什么</h1>
 				</h1></td></tr></br></br>
 				
-				<tr><td><div class="username-field">
+				<tr><td colspan=2 align="center"><div class="username-field">
 					<h4>邮箱: <%= f.email_field :email, autofocus: true, autocomplete: "email" %></h4>
-				</div></td></tr><tr><td>
+				</div></td></tr><tr><td colspan=2 align="center">
 				<div class="password-field">
           <h4>密码: <%= f.password_field :password, autocomplete: "new-password" %></h4>
-				</div></td></tr><tr><td>
+				</div></td></tr><tr><td colspan=2 align="center"> 
 				<div class="password-field" style="margin-right:36px;">
 				  <h4>确认密码: <%= f.password_field :password_confirmation, autocomplete: "new-password" %></h4>
 				</div></td></tr></br>
 				<div class="actions">
-          <tr><td><h4><%= f.submit "注册" %></h4></td></tr>
+          <tr><td><h4><a href='/test_views/home'>返回主页</a></td><td><%= f.submit "注册" %></h4></td></tr> 
         </div>
       <% end %>
 		</div>
 
-		</br><tr><td>
+		</br><tr><td colspan=2 align="center" align="center">
 			<h2>与世界分享你的视界</h2>
 			</td></tr></table>
 		<!--

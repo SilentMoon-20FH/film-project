@@ -47,9 +47,7 @@ a:focus, a:hover {
 	text-decoration: none;
 	outline: none
 }
-img {
-	width: 100%;
-}
+
 /*-- //Reset Code --*/
 .tlinks{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
 /*-- Banner --*/
@@ -306,7 +304,7 @@ padding: 70px 0 165px 0;
     width: 90%;
     position: absolute;
     overflow: hidden;
-    padding: 6.5em 0;
+    padding: 1.5em 0;
 }
 .view img {
    display: block;
@@ -1564,7 +1562,7 @@ color:rgb(2, 24, 136) !important;
     background: url(/assets/img-sp.png) no-repeat 0px -183px;
     padding-left: 2.5em;
     list-style-type: none;
-    text-transform: capitalize;
+    text-transform: none;
     font-family: 'Poppins', sans-serif;
 	text-align:left;
     color: #999;

@@ -1,4 +1,4 @@
-
+<meta name="referrer" content="no-referrer">
 <!-- Header -->
 	<div class="header">
 		<!-- Navbar -->
@@ -93,7 +93,7 @@
 						
 						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[0]%>'>
 							<h4><%=Tag.find(@tagIdList[0]).name%></h4>
-							<img src='<%= asset_path 'tg1.jpg' %>' alt=" " class="img-responsive" /></a>
+							<img src='<%= asset_path Tag.find(@tagIdList[0]).pic %>' alt=" " height="360" width="250" /></a>
 					</div>
 					</td>
 				<!--</li>-->
@@ -103,7 +103,7 @@
 						
 						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[1]%>'>
 							<h4><%=Tag.find(@tagIdList[1]).name%></h4>
-							<img src= '<%= asset_path 'tg2.jpg' %>' alt=" " class="img-responsive" /></a>
+							<img src= '<%= asset_path Tag.find(@tagIdList[1]).pic %>' alt=" " height="360" width="250" /></a>
 					</div>
 					</td>
 				<!--</li>-->
@@ -113,7 +113,7 @@
 						
 						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[2]%>'>
 							<h4><%=Tag.find(@tagIdList[2]).name%></h4>
-							<img src='<%= asset_path 'tg3.jpg' %>' alt=" " class="img-responsive" /></a>
+							<img src='<%= asset_path Tag.find(@tagIdList[2]).pic %>' alt=" " height="360" width="250" /></a>
 					</div>
 					</td>
 				<!--</li>-->
@@ -123,7 +123,7 @@
 						
 						<a href='/test_views/find_in_tag?tag_id=<%=@tagIdList[3]%>'>
 							<h4><%=Tag.find(@tagIdList[3]).name%></h4>
-							<img src='<%= asset_path 'tg4.jpg' %>' alt=" " class="img-responsive" /></a>
+							<img src='<%= asset_path Tag.find(@tagIdList[3]).pic %>' alt=" " height="360" width="250" /></a>
 					</div>
 					</td>
 				</table>
@@ -181,14 +181,10 @@
 					<p>粉丝数: <%=user.fannum%></p>
 				<%end%>
 				<p class="ab_name_t">个性签名：</p>
-				<%if user.information==nil or user.information==""%>
-				    <p class="ab_name_t">	这个人很懒，什么都没有留下。</p>
-				<%else
-					clists = user.information.split("\n")
-			  		clists.each do |ctext|
-				%>
-					<p class="ab_name_t">	<%= ctext %> </p>
-			 		<%end%>
+      			<%if user.information==nil or user.information==""%>
+			 	   <textarea name="comment"  required="" rows="4" cols="40" disabled="disabled" style="resize:none;">这个人很懒，什么都没有留下。</textarea>
+				<%else%>
+						<textarea name="comment"  required="" rows="4" cols="40" disabled="disabled" style="resize:none;"><%=user.information%></textarea>
 				<%end%>
 				<%if user==current_user%>
 					<a href='/test_views/aboutme'>Read More</a>
@@ -207,67 +203,74 @@
 	<div class="container">
 		<h3>推荐游戏</h3>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			
-			<img src='<%=Game.find((@gameIdList[0])).pic%>' height="255px" alt=" " />
+			<a href='/test_views/single?gameId=<%=@gameIdList[0]%>'>
+			<img src='<%=Game.find((@gameIdList[0])).pic%>' height="255px" width="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[0]%>'><h4>点击这里</h4>
+				<h4>点击这里</h4>
 				<p>以了解</p>
 				<h4><%=Game.find(@gameIdList[0]).name%></h4></a>
 			</div>
 			
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%=Game.find((@gameIdList[1])).pic%>' height="255px" alt=" " />
+			<a href='/test_views/single?gameId=<%=@gameIdList[1]%>'>
+			<img src='<%=Game.find((@gameIdList[1])).pic%>' height="255px" width="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[1]%>'><h4>点击这里</h4>
+				<h4>点击这里</h4>
 				<p>以了解</p>
 				<h4><%=Game.find(@gameIdList[1]).name%></h4></a>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%=Game.find((@gameIdList[2])).pic%>'  height="255px" alt=" " />
+			<a href='/test_views/single?gameId=<%=@gameIdList[2]%>'>
+			<img src='<%=Game.find((@gameIdList[2])).pic%>'  height="255px" width="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[2]%>'><h4>点击这里</h4>
+				<h4>点击这里</h4>
 				<p>以了解</p>
 				<h4><%=Game.find(@gameIdList[2]).name%></h4></a>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-w3l view view-eighth">
-			<img src='<%=Game.find((@gameIdList[3])).pic%>' height="255px" alt=" " />
+			<a href='/test_views/single?gameId=<%=@gameIdList[3]%>'>
+			<img src='<%=Game.find((@gameIdList[3])).pic%>' height="255px" width="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[3]%>'><h4>点击这里</h4>
+				<h4>点击这里</h4>
 				<p>以了解</p>
 				<h4><%=Game.find(@gameIdList[3]).name%></h4></a>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
-			<img src='<%=Game.find((@gameIdList[4])).pic%>' height="255px" alt=" " />
+			<a href='/test_views/single?gameId=<%=@gameIdList[4]%>'>
+			<img src='<%=Game.find((@gameIdList[4])).pic%>' height="255px" width="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[4]%>'><h4>点击这里</h4>
+				<h4>点击这里</h4>
 				<p>以了解</p>
 				<h4><%=Game.find(@gameIdList[4]).name%></h4></a>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
-			<img src='<%=Game.find((@gameIdList[5])).pic%>' height="255px" alt=" " />
+			<a href='/test_views/single?gameId=<%=@gameIdList[5]%>'>
+			<img src='<%=Game.find((@gameIdList[5])).pic%>' height="255px" width="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[5]%>'><h4>点击这里</h4>
+				<h4>点击这里</h4>
 				<p>以了解</p>
 				<h4><%=Game.find(@gameIdList[5]).name%></h4></a>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
-			<img src='<%=Game.find((@gameIdList[6])).pic%>' height="255px" alt=" " />
+			<a href='/test_views/single?gameId=<%=@gameIdList[6]%>'>
+			<img src='<%=Game.find((@gameIdList[6])).pic%>' height="255px" width="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[6]%>'><h4>点击这里</h4>
+				<h4>点击这里</h4>
 				<p>以了解</p>
 				<h4><%=Game.find(@gameIdList[6]).name%></h4></a>
 			</div>
 		</div>
 		<div class="col-md-3 new-grid-agile view view-eighth">
-			<img src='<%=Game.find((@gameIdList[7])).pic%>' height="255px" alt=" " />
+			<a href='/test_views/single?gameId=<%=@gameIdList[7]%>'>
+			<img src='<%=Game.find((@gameIdList[7])).pic%>' height="255px" width="255px" alt=" " />
 			<div class="mask">
-				<a href='/test_views/single?gameId=<%=@gameIdList[7]%>'><h4>点击这里</h4>
+				<h4>点击这里</h4>
 				<p>以了解</p>
 				<h4><%=Game.find(@gameIdList[7]).name%></h4></a>
 			</div>

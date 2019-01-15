@@ -24,21 +24,7 @@ class TestViewsController < ApplicationController
         end
         game_name_list2=Hash[hs.sort_by{|key, val|val}].keys.reverse[0,3]
         @game_name_array=[game_name_list0,game_name_list1,game_name_list2]
-        game_pic_list=[]
-        for t in tag_list
-            score_tag=0
-            pic=""
-            for r in Rgametag.where("tag_id=?",t)
-                if Game.find(r.game_id).score>score_tag
-                    score_tag=Game.find(r.game_id).score
-                    pic=Game.find(r.game_id).pic
-                end
-            end
-            game_pic_list.push(pic)
-            
-            
-        end
-        @pic_list=game_pic_list
+
     end
     
     def contact
