@@ -37,7 +37,7 @@
   <div class="sidebar">
     <div class="about">
       <%if current_user.pic==nil %>
-        <p class="avatar"> <img src='https://img2.woyaogexing.com/2019/01/09/7d9bdd0d734c4519a6959978735ffc0a!400x400.jpeg' %>' alt=""> </p>
+        <p class="avatar"> <img src='https://img2.woyaogexing.com/2019/01/09/7d9bdd0d734c4519a6959978735ffc0a!400x400.jpeg' alt=""> </p>
       <%else%>
       <p class="avatar"> <img src='<%=current_user.pic%>' alt=""> </p>
       <%end%>
@@ -69,7 +69,7 @@
       <ul>
         <% userlists = User.all.order(fannum: :desc)  %>
         <% if userlists.count==1 and userlists[0].id==current_user.id%>
-        <p>您近期活动太少了，很难推荐哦</p>
+
         <% else %>
           <% userlists=userlists.page(params[:page]).per(5) %>
           <% userlists.each do |u| %>
