@@ -38,7 +38,7 @@ Tag.create(name:"格斗",score:(S["格斗"]/C["格斗"]).round(1),pic:"tag6.jpg"
 Tag.create(name:"模拟",score:(S["模拟"]/C["模拟"]).round(1),pic:"tag7.jpg")
 Tag.create(name:"策略",score:(S["策略"]/C["策略"]).round(1),pic:"tag8.jpg")
 
-gamecount=1
+gamecount=145
 
 csv.each do |row|
     alltag = row[1].split(", ")
@@ -47,4 +47,13 @@ csv.each do |row|
     end
     gamecount+=1
 end
+
+usercount=1
+User.create(email:'ucas@game.com',password:"password",isadmin:1)
+
+while usercount < 30 do
+    User.create(email:'test'+usercount.to_s+'@game.com',password:'password')
+    usercount+=1
+end
+
 
