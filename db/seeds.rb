@@ -48,7 +48,13 @@ csv.each do |row|
     gamecount+=1
 end
 
+usercount=1
 User.create(email:'ucas@game.com',password:"password",isadmin:1)
+
+while usercount < 10 do
+    User.create(email:'test'+usercount.to_s+'@game.com',password:'password')
+    usercount+=1
+end
 
 
 
