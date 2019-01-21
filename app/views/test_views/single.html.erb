@@ -66,8 +66,12 @@
 									<%if User.find(c.user_id).pic==nil %> <img src='https://img2.woyaogexing.com/2019/01/09/7d9bdd0d734c4519a6959978735ffc0a!400x400.jpeg'  alt=""> 
       								<%else%><img src='<%=User.find(c.user_id).pic%>' alt="" > 
       								<%end%></div></td><td>
-      							<%if c.user_id==current_user.id %>
-      								<a href='/test_views/aboutme'><%= current_user.email %></a> ||
+      							<%if user_signed_in?%>
+      								<%if c.user_id==current_user.id %>
+      									<a href='/test_views/aboutme'><%= current_user.email %></a> ||
+      								<%else%>
+										<a href='/test_views/aboutother?userId=<%=c.user_id%>'><%= User.find(c.user_id).email %></a> ||
+										<%end%>
       							<%else%>
 									<a href='/test_views/aboutother?userId=<%=c.user_id%>'><%= User.find(c.user_id).email %></a> ||
 								<%end%>
