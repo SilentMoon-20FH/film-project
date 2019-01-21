@@ -38,7 +38,7 @@ Tag.create(name:"格斗",score:(S["格斗"]/C["格斗"]).round(1),pic:"tag6.jpg"
 Tag.create(name:"模拟",score:(S["模拟"]/C["模拟"]).round(1),pic:"tag7.jpg")
 Tag.create(name:"策略",score:(S["策略"]/C["策略"]).round(1),pic:"tag8.jpg")
 
-gamecount=145
+gamecount=1
 
 csv.each do |row|
     alltag = row[1].split(", ")
