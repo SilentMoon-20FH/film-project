@@ -11,6 +11,11 @@ Things you may want to cover:
 
 * Configuration
 
+* GitHub账号所属者：
+  SilentMoon-20FH —— 张天瑞；
+  qumuzi —— 曲慕子；
+  kaichangucas —— 章凯
+
 * Database creation
 
 * Database initialization
