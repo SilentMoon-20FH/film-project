@@ -174,7 +174,7 @@
       		<%else%>
     		  	<p class="avatar"> <img src='<%=user.pic%>' alt="" height=100> </p>
       		<%end%>
-				<h4><%=user.email%></h4>
+				<h4><%=user.email.split("@")[0]%></h4>
 				<%if user.fannum==nil%>
 					<p>粉丝数: 0</p>
 				<%else%>
