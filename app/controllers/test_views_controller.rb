@@ -73,7 +73,7 @@ class TestViewsController < ApplicationController
 
         @tagIdList=Hash[tag_hash.sort_by{|key, val|val}].keys.reverse
         @gameIdList=Hash[game_hash.sort_by{|key, val|val}].keys.reverse
-        @userIdList=User.order(fannum: :desc)
+        @userIdList=User.where(["fannum>?", 0]).order(fannum: :desc)
         render :layout => 'home'
     end
     
