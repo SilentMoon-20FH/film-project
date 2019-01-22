@@ -19,4 +19,11 @@ class UserTest < ActiveSupport::TestCase
     user = User.new(email:"test@qq.com")
     assert_not user.save
   end
+  
+  test "should not save user with the same email" do 
+    user = User.new(email:"as@qq.com",password:"123456")
+    user1 = User.new(email:"as@qq.com",password:"123456")
+    assert user.save
+    assert_not user1.save
+  end
 end
